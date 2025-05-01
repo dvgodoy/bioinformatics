@@ -10,17 +10,17 @@ tags:
 
 So, you're a data scientist trying to make your way into bioinformatics. There's plenty of data to analyze, and your knowledge of algorithms, models, and methods will surely give you a head start…
 
-But first, you need to brush up on some high school biology and level up fast. Because there’s a lot — and I mean a lot — of jargon in this field. The data structures themselves aren’t necessarily complicated (though they can get pretty deep), but the terminology is another story. You need to know what all those pesky terms are referring to.
+But first, you need to brush up on some high school biology and level up fast. Because there’s a lot, and I mean **a lot**, of jargon in this field. The data structures themselves aren’t necessarily complicated (though they can get pretty deep), but the terminology is another story. You need to know what all those pesky terms are referring to.
 
 Sure, there are tons of resources out there on bioinformatics… but the big picture? Nowhere to be found.
 
 And that’s what this post is all about: the big picture.
 
-You’ve probably heard terms like DNA, genome, chromosomes, genes, nucleotides, proteins, even mRNA, right? You “know” them — sort of. But if I asked you to draw a diagram showing how they all connect — how one flows into the next — could you do it?
+You’ve probably heard terms like **DNA, genome, chromosomes, genes, nucleotides, proteins, even mRNA**, right? You “*know*” them — sort of. But if I asked you to draw a diagram showing how they all connect — how one flows into the next — could you do it?
 
 I couldn’t.
 
-This post is the result of my own learning journey. It’s a data scientist’s view of the structure of genetic information — and the biological processes that transform it. These processes have inputs, produce outputs, and follow clear (if intricate) rules. In other words: they behave like functions.
+This post is the result of my own learning journey. It’s a data scientist’s view of the structure of genetic information, and the biological processes that transform it. These processes have inputs, produce outputs, and follow clear (if intricate) rules. In other words: they behave like functions.
 
 So, in the spirit of making things concrete, we’ll model them as Python functions.
 
@@ -34,19 +34,19 @@ Here is the diagram you can use for reference as read through this post.
 
 *Source: Image by the author*
 
-It depicts a step-by-step overview of the **central dogma of molecular biology: from DNA to functional protein**. It starts with the genome, which consists of paired chromosomes inherited from each parent. Each chromosome contains genes, which are sequences of DNA. Genes have two strands: a coding strand and a template strand. During transcription, the template strand is used to synthesize a pre-mRNA molecule that includes untranslated regions (UTRs), exons, and introns.
+It depicts a step-by-step overview of the **central dogma of molecular biology: from DNA to functional protein**. It starts with the **genome**, which consists of **paired chromosomes** inherited from each parent. Each chromosome contains **genes**, which are **sequences of DNA**. Genes have two **strands**: a coding strand and a template strand. During **transcription**, the **template strand** is used to **synthesize a pre-mRNA** molecule that includes **untranslated regions (UTRs), exons, and introns**.
 
-Splicing removes the introns from the pre-mRNA and connects the exons to form mature mRNA. Additional modifications include the addition of a 5' cap (m7G) and a 3' poly-A tail, which are necessary for stability and export from the nucleus. In the cytoplasm, the mature mRNA is translated into a polypeptide chain. Ribosomes read codons—three-nucleotide sequences—in the coding sequence (CDS), matching them to amino acids to build a protein. Translation begins at a start codon (AUG) and ends at a stop codon, producing a functional polypeptide that will fold into a working protein.
+**Splicing** removes the introns from the pre-mRNA and **connects the exons** to form **mature mRNA**. Additional **modifications** include the addition of a **5' cap (m7G) and a 3' poly-A tail**, which are necessary for stability and export from the nucleus. In the cytoplasm, the mature mRNA is **translated into a polypeptide chain**. Ribosomes read **codons**—three-nucleotide sequences—in the **coding sequence (CDS)**, matching them to **amino acids** to build a **protein**. Translation begins at a start codon (AUG) and ends at a stop codon, producing a functional polypeptide that will fold into a working protein.
 
 ## Genome
 
-The genome contains the complete set of genetic information for an organism. Amazingly, almost every cell in a multicellular organism carries its own full copy of the genome. In eukaryotes (animals, plants, fungi, seaweeds, and many unicellular organisms), the genome is housed in the cell nucleus. In contrast, prokaryotes (primarily bacteria and archaea) lack a nucleus, so their genetic material resides freely in the cytoplasm.
+The **genome** contains the **complete set of genetic information** for an organism. Amazingly, almost **every cell** in a multicellular organism carries its own **full copy** of the genome. In **eukaryotes** (animals, plants, fungi, seaweeds, and many unicellular organisms), the genome is housed in the **cell nucleus**. In contrast, **prokaryotes** (primarily bacteria and archaea) lack a nucleus, so their genetic material resides freely in the **cytoplasm**.
 
 
 **Genomics** is the study of the structure, function, evolution, and analysis of an organism's genome.
 {: .notice--primary}
 
-In humans, the genome (in most somatic cells, not reproductive cells) contains just over 6 billion base pairs, or roughly 12 billion nucleotides, unevenly distributed across 23 pairs of chromosomes.
+In humans, the genome (in most somatic cells, not reproductive cells) contains just over **6 billion base pairs**, or roughly 12 billion nucleotides, unevenly **distributed across 23 pairs of chromosomes**.
 
 ### Genome in Python
 
@@ -98,7 +98,7 @@ class Genome(object):
 
 ## Chromosomes
 
-The genome is organized into chromosomes — long DNA molecules. In prokaryotes, there's typically a single circular chromosome. In eukaryotes, like humans, the genome is split across multiple linear chromosomes. Humans have 46 chromosomes, arranged in 23 pairs. One chromosome in each pair comes from your mother and the other from your father. When chromosomes are organized in pairs, the organism is said to be diploid; if only one set is present (as in gametes), it's haploid. The two chromosomes in a pair are called homologous, meaning they carry the same genes in the same order, but not necessarily the same DNA sequence.
+The genome is organized into **chromosomes — long DNA molecules**. In **prokaryotes**, there's typically a **single circular chromosome**. In **eukaryotes**, like humans, the genome is split across **multiple linear chromosomes**. Humans have 46 chromosomes, arranged in 23 pairs. One chromosome in each pair comes from your mother and the other from your father. When chromosomes are organized in pairs, the organism is said to be diploid; if only one set is present (as in gametes), it's haploid. The **two chromosomes in a pair are called homologous**, meaning they carry the **same genes in the same order**, but ***not necessarily* the same DNA sequence**.
 
 Each parent contributes a haploid set of 23 chromosomes — about 3 billion base pairs — to the child, resulting in a diploid genome of approximately 6 billion base pairs (or 12 billion nucleotides). However, this DNA isn't evenly distributed across chromosomes, as shown in the illustration below:
 
@@ -106,21 +106,21 @@ Each parent contributes a haploid set of 23 chromosomes — about 3 billion base
 
 *Source: Normal male 46,XY human karyotype. Wessex Reg. Genetics Centre. [Wellcome Collection](https://wellcomecollection.org/works/zd7rdetc). Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)*
 
-Human chromosomes vary greatly in size, ranging from about 47 million to 247 million base pairs. They’re numbered roughly in order of decreasing size, from chromosome 1 to 22. Interestingly, chromosome 21 is actually slightly shorter than chromosome 22. These 22 numbered chromosomes are called autosomes. The remaining two — X and Y — are known as sex chromosomes.
+Human chromosomes vary greatly in size, *ranging from about 47 million to 247 million base pairs*. They’re numbered roughly in order of decreasing size, from chromosome 1 to 22. Interestingly, chromosome 21 is actually slightly shorter than chromosome 22. These 22 numbered chromosomes are called autosomes. The remaining two — X and Y — are known as sex chromosomes.
 
-**IMPORTANT**: Although we inherit one chromosome of each pair from each parent, the sequences are remarkably similar. On average, the difference between homologous chromosomes is only about 0.2%. This means that out of 3 billion base pairs, about 2.994 billion are identical between maternal and paternal copies. Keep that in mind — it becomes especially important when we explore how DNA sequencing and variant analysis work.
+**IMPORTANT**: Although we inherit one chromosome of each pair from each parent, the sequences are remarkably similar. On average, **the difference between homologous chromosomes is only about 0.2%**. This means that out of 3 billion base pairs, about 2.994 billion are identical between maternal and paternal copies. Keep that in mind — it becomes especially important when we explore how DNA sequencing and variant analysis work (in another blog post).
 {: .notice--warning}
 
 ### The Human Genome Project
 
-The Human Genome Project was a landmark scientific effort that, over 13 years, successfully mapped and sequenced the entire human genome, about 3 billion base pairs. This achievement resulted in the first version of a reference genome, a composite representation built by identifying consensus sequences (essentially, majority voting) across the genomes of multiple volunteers. Since the genomic difference between any two individuals is only about 0.2%, a shared reference could be reliably constructed.
+The Human Genome Project was a landmark scientific effort that, over 13 years, successfully **mapped and sequenced the entire human genome**, about 3 billion base pairs. This achievement resulted in the first version of a **reference genome, a composite representation built by identifying consensus sequences** (essentially, majority voting) across the genomes of multiple volunteers. Since the genomic difference between any two individuals is only about 0.2%, a shared reference could be reliably constructed.
 
-With the reference genome in place, sequencing a new individual's genome shifted from a de novo assembly (meaning, assembling it from scratch) challenge to a comparative one. This newer approach, called read alignment, involves mapping fragments of the individual's DNA to corresponding regions in the reference genome, allowing for small mismatches that reflect individual variation.
+With the reference genome in place, sequencing a new individual's genome shifted from a *de novo* assembly (meaning, assembling it from scratch) challenge to a comparative one. This newer approach, called **read alignment**, involves **mapping fragments of the individual's DNA to corresponding regions in the reference genome**, allowing for small mismatches that reflect individual variation.
 
-**(Not So) Fun Fact**: An estimated 6%–8% of the human genome consists of sequences derived from endogenous retroviruses (ERVs)—ancient viruses that once integrated their genetic material into our ancestors' DNA and have been inherited ever since.
+**(Not So) Fun Fact**: An estimated 6%–8% of the human genome consists of sequences derived from **endogenous retroviruses (ERVs)**—ancient viruses that once integrated their genetic material into our ancestors' DNA and have been inherited ever since.
 {: .notice--info}
 
-**(A Little) Fun Fact**: Approximately 50% of the human genome consists of repeats, patterns that occur in multiple copies throughout the genome. One particularly abundant repeat is the **Alu element**, a short stretch of about 300 nucleotides that appears over 1 million times, accounting for roughly 10.7% of the entire genome.
+**(A Little) Fun Fact**: Approximately 50% of the human genome consists of **repeats**, patterns that occur in multiple copies throughout the genome. One particularly abundant repeat is the **Alu element**, a short stretch of about 300 nucleotides that appears over 1 million times, accounting for roughly 10.7% of the entire genome.
 {: .notice--info}
 
 ### Chromosome in Python
@@ -168,22 +168,23 @@ class Chromosome(object):
 
 ## DNA
 
-DNA, short for **D**eoxyribo**n**ucleic **A**cid, is a polymer composed of repeating units called nucleotides. Each DNA molecule consists of two long chains (or strands) coiled around each other to form the iconic double helix structure.
+DNA, short for **D**eoxyribo**n**ucleic **A**cid, is a polymer composed of repeating units called **nucleotides**. Each DNA molecule consists of **two long chains (or strands)** coiled around each other to form the iconic double helix structure.
 
-DNA has a well-defined structure. Each strand has a sugar-phosphate backbone, and the two strands are held together by specific base pairs: adenine (A) pairs with thymine (T), and cytosine (C) pairs with guanine (G). Because of this strict base-pairing, the two strands are complementary—knowing the sequence of one strand allows reconstruction of the other.
+DNA has a well-defined structure. Each strand has a sugar-phosphate backbone, and the two strands are held together by specific base pairs: **adenine (A) pairs with thymine (T), and cytosine (C) pairs with guanine (G)**. Because of this strict base-pairing, the two **strands are complementary**—knowing the sequence of one strand allows reconstruction of the other.
 
-Despite strict base-pairing rules, the total amount of cytosine and guanine in a genome can differ significantly from the total amount of adenine and thymine. The proportion of guanine and cytosine is known as the GC-content, and it varies widely across species. In humans, the GC-content is about 42%, while in other organisms it ranges from as low as 20% in *Plasmodium falciparum* (the parasite responsible for malaria) to as high as 72% in the bacterium *Streptomyces coelicolor*.
+Despite strict base-pairing rules, the total **amount of cytosine and guanine in a genome can differ significantly from the total amount of adenine and thymine**. The proportion of guanine and cytosine is known as the **GC-content**, and it varies widely across species. In humans, the GC-content is about 42%, while in other organisms it ranges from as low as 20% in *Plasmodium falciparum* (the parasite responsible for malaria) to as high as 72% in the bacterium *Streptomyces coelicolor*.
+{: .notice--info}
 
 **Fun Fact**: One full turn of the double helix spans about 10.5 base pairs (nucleotides per strand).
 {: .notice--info}
 
-This complementarity is essential for DNA replication, which occurs during cell division (e.g., mitosis). Specialized enzymes like helicase first unzip the double helix by separating the two strands. Then DNA polymerase synthesizes new complementary strands by matching each exposed nucleotide with its pair. The result is two identical DNA molecules, each with one original strand and one newly synthesized strand.
+This **complementarity is essential for DNA replication**, which occurs during cell division (e.g., mitosis). Specialized enzymes like helicase first unzip the double helix by separating the two strands. Then **DNA polymerase synthesizes new complementary strands** by matching each exposed nucleotide with its pair. The result is two identical DNA molecules, each with one original strand and one newly synthesized strand.
 
 <img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/replication.png" />
 
 *Source: Image by the author*
 
-Did you notice the 5' and 3' in the figure above? They indicate, respectively, the "head" and "tail" of each strand since new nucleotides can only be appended to the 3' end of the strand. We'll get back to it in a couple of sections.
+Did you notice the **5' and 3'** in the figure above? They indicate, respectively, the **"head" and "tail" of each strand** since new **nucleotides can only be appended to the 3'** end of the strand. We'll get back to it in a couple of sections.
 
 ### Strand and DNA in Python
 
@@ -265,9 +266,9 @@ def replicate(dna):
 
 ## Nucleotides
 
-Nucleotides are the basic building blocks of DNA and RNA. In DNA, there are four types of nucleotides, each represented by a letter: A (adenine), C (cytosine), G (guanine), and T (thymine). RNA uses the same letters, except U (uracil) replaces T.
+Nucleotides are the **basic building blocks of DNA and RNA**. In DNA, there are four types of nucleotides, each represented by a letter: A (adenine), C (cytosine), G (guanine), and T (thymine). **RNA** uses the same letters, except **U (uracil) replaces T (thymine)**.
 
-Nucleotides form specific base pairs through hydrogen bonding: A always pairs with T (or U in RNA), and C always pairs with G. That means if one strand has a C, the other must have a G at that position — never a T or A. These base pairs form the "rungs" of the DNA ladder.
+Nucleotides form specific base pairs through hydrogen bonding: **A always pairs with T (or U in RNA)**, and **C always pairs with G**. That means if one strand has a C, the other must have a G at that position — never a T or A. These base pairs form the "rungs" of the DNA ladder.
 
 Maybe the cartoon below can help you memorizing the pairs:
 
@@ -275,11 +276,10 @@ Maybe the cartoon below can help you memorizing the pairs:
 
 *Source: Generated by the author*
 
-Did you notice that A and G have pointy heads while C, T, and U have dented heads? Chemically, nucleotides fall into two categories:
+Did you notice that **A and G** have **pointy heads** while **C, T, and U** have **dented heads**? Chemically, nucleotides fall into two categories:
 
-- Purines: double-ringed bases — adenine (A) and guanine (G)
-
-- Pyrimidines: single-ringed bases — cytosine (C), thymine (T), and uracil (U)
+- **Purines**: double-ringed bases — adenine (A) and guanine (G)
+- **Pyrimidines**: single-ringed bases — cytosine (C), thymine (T), and uracil (U)
 
 Each nucleotide consists of a nitrogenous base (A, C, G, T, or U), a sugar (deoxyribose in DNA, ribose in RNA), and a phosphate group. In DNA, the sugars (D) and phosphates (P) link together in an alternating pattern to form the sugar-phosphate backbone — the "rails" of the DNA ladder. The bases stick out and pair across the two strands to form the ladder's "rungs."
 
@@ -289,15 +289,15 @@ Each nucleotide consists of a nitrogenous base (A, C, G, T, or U), a sugar (deox
 
 ## Deoxyribose and Strandness
 
-The sugar in DNA — deoxyribose — gives DNA the "D" in its name. Deoxyribose is a five-carbon sugar with a ring-like structure, typically drawn as a pentagon. One corner of the ring contains an oxygen atom; the remaining four vertices are carbon atoms, numbered 1' through 4', starting to the right of the oxygen and proceeding clockwise. A fifth carbon (5') is not part of the ring but branches off the 4' carbon, as you can see in the figure below:
+The sugar in DNA — deoxyribose — gives DNA the "D" in its name. Deoxyribose is a **five-carbon sugar** with a ring-like structure, typically drawn as a **pentagon**. One corner of the ring contains an oxygen atom; the remaining four vertices are carbon atoms, numbered 1' through 4', starting to the right of the oxygen and proceeding clockwise. A fifth carbon (5') is not part of the ring but branches off the 4' carbon, as you can see in the figure below:
 
 <img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/deoxyribose.png" />
 
 *Source: Image by the author*
 
-Two of these carbon positions — 3' and 5' — play a critical structural role. They are the connection points for phosphate (P) groups that link nucleotides together in a chain. These connections define the directionality of a DNA strand. By convention, a DNA strand is read and written from the 5' end (which has a free phosphate group) to the 3' end (which has a free hydroxyl group). This is referred to as the 5' to 3' direction.
+**Two of these carbon positions — 3' and 5' — play a critical structural role**. They are the connection points for phosphate (P) groups that link nucleotides together in a chain. These connections **define the directionality of a DNA strand**. By convention, a **DNA strand is read and written from the 5' end** (which has a free phosphate group) **to the 3' end** (which has a free hydroxyl group). This is referred to as the 5' to 3' direction.
 
-DNA is composed of two strands, and these strands are always aligned in opposite orientations — they are said to be **anti-parallel**. That means one strand runs from 5' to 3', while the other runs from 3' to 5'. This directionality has major biological implications. For example, during DNA replication, new nucleotides can only be added to the 3' end of a growing strand — a rule that governs how enzymes like DNA polymerase operate.
+DNA is composed of **two strands**, and these strands are always **aligned in opposite orientations** — they are said to be **anti-parallel**. That means one strand runs from 5' to 3', while the other runs from 3' to 5'. This directionality has major biological implications. For example, during DNA replication, new nucleotides can only be added to the 3' end of a growing strand — a rule that governs how enzymes like DNA polymerase operate.
 
 <img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dna_strands.png" />
 
@@ -387,13 +387,13 @@ def dna_polymerase(strand):
 
 ## Genes
 
-You might assume the entire genome is made of genes — sections of DNA that actively encode biological instructions — but that’s far from the case. A gene is a region of DNA that contains the instructions for making a functional product, usually a protein. This process typically involves two steps: the gene is first transcribed into messenger RNA (mRNA), and then translated into a protein (we’ll unpack this later.)
+You might assume the entire genome is made of **genes** — sections of DNA that actively encode biological instructions — but that’s far from the case. A gene is a **region of DNA** that contains the **instructions for making a functional product, usually a protein**. This process typically involves two steps: the gene is first **transcribed into messenger RNA (mRNA)**, and then **translated into a protein** (we’ll unpack this later.)
 
-Humans have around 21,000 protein-coding genes, yet these make up only about 2% of the total genome — roughly 60 million base pairs. The rest of the genome includes non-coding DNA, which contains regulatory elements, non-coding RNAs, introns (non-coding parts within genes, we'll also get back to it later), repeat elements, and other sequences with varying or still-unknown functions.
+Humans have around 21,000 protein-coding genes, yet these make up only about **2% of the total genome** — roughly 60 million base pairs. The rest of the genome includes non-coding DNA, which contains regulatory elements, non-coding RNAs, introns (non-coding parts within genes, we'll also get back to it later), repeat elements, and other sequences with varying or still-unknown functions.
 
-Gene sizes vary widely. Some are just a few hundred base pairs long; others stretch over 2 million base pairs. The median human gene spans about 24,000 base pairs, though much of that may be non-coding intronic sequence.
+Gene sizes vary widely. Some are just a few hundred base pairs long; others stretch over 2 million base pairs. The *median human gene spans about 24,000 base pairs*, though much of that may be non-coding intronic sequence.
 
-Genes are distributed unevenly across chromosomes. For example, chromosome 1, the largest, contains around 2,800 genes, while chromosome 22, despite being the second-shortest, carries about 750 genes.
+Genes are *distributed unevenly across chromosomes*. For example, chromosome 1, the largest, contains around 2,800 genes, while chromosome 22, despite being the second-shortest, carries about 750 genes.
 
 ### Gene in Python
 
@@ -433,13 +433,12 @@ class Gene(object):
 
 ## The Central Dogma of Molecular Biology
 
-DNA’s role isn’t limited to making copies of itself. Its primary function is to store the genetic information needed to build the working molecules of life — especially proteins. But DNA doesn’t directly produce proteins. Instead, the process relies on an intermediary: RNA. This leads us to the Central Dogma of Molecular Biology, which describes the flow of genetic information within a cell.
+DNA’s role isn’t limited to making copies of itself. Its primary function is to store the genetic information needed to build the working molecules of life — especially proteins. But DNA doesn’t directly produce proteins. Instead, the process relies on an intermediary: RNA. This leads us to the **Central Dogma of Molecular Biology, which describes the flow of genetic information within a cell**.
 
-The central dogma follows this path: DNA → RNA → Protein
+The central dogma follows this path: **DNA → RNA → Protein**
 
-- Transcription: A segment of DNA is used as a template to synthesize RNA. When this RNA carries instructions for making a protein, it’s called messenger RNA (mRNA).
-
-- Translation: The mRNA is then decoded by ribosomes to assemble a protein, using the genetic code to translate nucleotide sequences into amino acid chains.
+- **Transcription**: A segment of DNA is used as a template to **synthesize RNA**. When this RNA carries instructions for making a protein, it’s called messenger RNA (mRNA).
+- **Translation**: The mRNA is then decoded by ribosomes to **assemble a protein**, using the genetic code to translate nucleotide sequences into amino acid chains.
 
 While not strictly part of the central dogma, DNA replication is also essential — it ensures that genetic information is preserved and passed on when cells divide.
 
@@ -449,11 +448,11 @@ While not strictly part of the central dogma, DNA replication is also essential 
 
 ## RNA and Transcription
 
-Ribonucleic acid (RNA) is a single-stranded molecule that acts as an intermediary in the process of gene expression. Specifically, messenger RNA (mRNA) serves as the template for assembling proteins. The process of creating mRNA from DNA is called transcription.
+Ribonucleic acid (RNA) is a **single-stranded molecule** that acts as an intermediary in the process of gene expression. Specifically, **messenger RNA (mRNA) serves as the template for assembling proteins**. The process of **creating mRNA from DNA is called transcription**.
 
-During transcription, one of the two DNA strands — called the template strand — is used to synthesize a complementary RNA molecule. The resulting RNA is nearly identical to the coding strand of the DNA, except that it uses uracil (U) instead of thymine (T).
+During transcription, one of the two DNA strands — called the **template strand** — is used to **synthesize a complementary RNA molecule**. The resulting RNA is ***nearly identical* to the coding strand** of the DNA, except that it uses uracil (U) instead of thymine (T).
 
-The initial product is called pre-mRNA (or precursor mRNA). It includes not just protein-coding sequences (called exons) but also non-coding segments called introns, as well as other untranslated regions (UTRs). Before the mRNA can be used to make a protein, it undergoes processing — including splicing, capping, and tailing — to produce a mature mRNA molecule that contains (almost) only the coding instructions.
+The initial product is called pre-mRNA (or precursor mRNA). It includes not just *protein-coding sequences (called exons)* but also *non-coding segments called introns*, as well as other *untranslated regions (UTRs)*. Before the mRNA can be used to make a protein, it undergoes processing — including splicing, capping, and tailing — to produce a mature mRNA molecule that contains (almost) only the coding instructions.
 
 <img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/transcription.png" />
 
@@ -592,25 +591,24 @@ def transcribe(dna, gene):
 
 ## Gene Expression
 
-A gene is said to be expressed when it is actively transcribed into RNA and, often, translated into protein. If the gene is not used — for regulatory or epigenetic reasons — it is considered silent or suppressed.
+A gene is said to be expressed when it is **actively transcribed into RNA** and, often, translated into protein. If the gene is not used — for regulatory or epigenetic reasons — it is considered silent or suppressed.
 
-Gene expression levels can be quantified by measuring how much RNA is transcribed from that gene in a given sample. In practice, we count the number of RNA molecules that correspond to a gene using techniques like RNA sequencing (RNA-seq).
+Gene expression levels can be **quantified by measuring how much RNA is transcribed** from that gene in a given sample. In practice, we count the number of RNA molecules that correspond to a gene using techniques like RNA sequencing (RNA-seq).
 
-Gene expression is regulated by many factors, including transcription factors, chromatin structure, and environmental signals.
+Gene expression is *regulated by many factors*, including transcription factors, chromatin structure, and environmental signals.
 
 ## Alleles and Inheritance
 
-Each gene exists in two copies in diploid organisms, one from each parent. These variants of a gene are called alleles. They occupy the same position (called a locus) on each homologous chromosome.
+**Each gene exists in two copies in diploid organisms**, one from each parent. These **variants of a gene** are called **alleles**. They occupy the **same position** (called a locus) on each **homologous chromosome**.
 
-If both alleles are the same, either both “A” or both “a”, the individual is said to be homozygous for that gene. If the alleles differ (“A” and “a”) the individual is heterozygous.
+If **both alleles are the same**, either both “A” or both “a”, the individual is said to be **homozygous** for that gene. If the **alleles differ** (“A” and “a”) the individual is **heterozygous**.
 
 In classical genetics, traits are often categorized as dominant or recessive:
 
-- A dominant allele will determine the trait even if only one copy is present (e.g., Aa).
+- A **dominant** allele will determine the trait even if only one copy is present (e.g., Aa).
+- A **recessive** allele only produces its associated trait when both copies are present (e.g., aa).
 
-- A recessive allele only produces its associated trait when both copies are present (e.g., aa).
-
-Note that dominance refers to phenotypic outcome, such as whether a pea appears green or yellow, not to the level of gene expression, meaning the number of RNA transcripts produced. A pea may display the yellow phenotype dictated by the dominant allele, even if that allele is expressed at a lower level than the recessive one.
+Note that ***dominance** refers to phenotypic outcome*, such as whether a pea appears green or yellow, **not to the level of gene expression**, meaning the number of RNA transcripts produced. A pea may display the yellow phenotype dictated by the dominant allele, even if that allele is expressed at a lower level than the recessive one.
 
 ### Alleles in Python
 
@@ -651,25 +649,22 @@ def alleles(gene):
 
 Genes make up only a small part of the genome — and surprisingly, not even all of a gene’s sequence is used directly to build proteins. The pre-mRNA produced during transcription is divided into alternating regions called exons and introns.
 
-- Exons (expressed regions) contain the actual protein-coding instructions.
+- **Exons** (expressed regions) contain the actual **protein-coding instructions**.
+- **Introns** (intragenic regions) are **non-coding segments** that are located between exons; they are **removed from the RNA transcript** during a process called **splicing**.
 
-- Introns (intragenic regions) are non-coding segments that are located between exons; they are removed from the RNA transcript during a process called splicing.
-
-At first glance, introns may seem wasteful, but they provide a key evolutionary benefit: they enable alternative splicing — the ability to produce multiple proteins from a single gene. By including or skipping different exons, the cell can create diverse protein products, called isoforms, from the same DNA sequence.
+At first glance, introns may seem wasteful, but they provide a **key evolutionary benefit**: they enable **alternative splicing** — the ability to produce **multiple proteins from a single gene**. By including or skipping different exons, the cell can create diverse protein products, called **isoforms**, from the same DNA sequence.
 
 
 On average, mammalian genes contain 7–8 exons, but this number can vary widely. Exons are typically short (around 150 base pairs) while introns can range from hundreds to tens of thousands of base pairs. The first and last exons often include untranslated regions (UTRs) — parts of the RNA that are not translated into protein but play regulatory roles. After introns are spliced out, the resulting mature mRNA averages about 2,200 base pairs in length. The full set of protein-coding exons in the genome is called the **exome**, and it’s a major target in genetic and clinical research.
 {: .notice--primary}
 
-Splicing is driven by specific sequence motifs that mark the boundaries between exons and introns:
+**Splicing** is driven by specific sequence **motifs** (i.e. patterns of nucleotide sequences) that mark the boundaries between exons and introns:
 
-- Introns almost always start with a GT dinucleotide (in DNA; GU in RNA) and end with an AG.
+- **Introns** almost always start with a GT dinucleotide (in DNA; GU in RNA) and end with an AG.
+- **The 5' splice site** (*exon-intron boundary*) often matches consensus patterns like AG/**GU**AAGU or AG/**GU**CAGU, where GU (GT in the DNA strand) marks the start of the intron.
+- **The 3' splice site** (*intron-exon boundary*) typically ends with AG, preceded by variable patterns like U**AG**/ANNN, U**AG**/CNNN, G**AG**/ANNN, and G**AG**/CNNN (where N stands for any of the four bases), where AG marks the end of the intron.
 
-- The 5' splice site (exon-intron boundary) often matches consensus patterns like AG/**GU**AAGU or AG/**GU**CAGU, where GU (GT in the DNA strand) marks the start of the intron.
-
-- The 3' splice site (intron-exon boundary) typically ends with AG, preceded by variable patterns like U**AG**/ANNN, U**AG**/CNNN, G**AG**/ANNN, and G**AG**/CNNN (where N stands for any of the four bases), where AG marks the end of the intron.
-
-While these motifs are not absolute rules, they guide the spliceosome, the cellular machinery that performs splicing. Exceptions exist, but most splicing events follow this general GT-AG rule.
+While these motifs are not absolute rules, they guide the spliceosome, the cellular machinery that performs splicing. Exceptions exist, but *most splicing events follow this general GT-AG rule*.
 
 <img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/cds.png" />
 
@@ -745,22 +740,21 @@ def get_exons(rna, introns):
 
 ## Transcript (Mature mRNA)
 
-After transcription, the pre-mRNA undergoes a series of processing steps: splicing (removal of introns), capping, and polyadenylation. The resulting single-stranded molecule is called a mature mRNA, or transcript.
+After transcription, the pre-mRNA undergoes a series of processing steps: **splicing (removal of introns), capping, and polyadenylation**. The resulting single-stranded molecule is called a **mature mRNA, or transcript**.
 
-You might assume that the entire mature mRNA is used to build a protein — but only part of it is. The actual coding sequence (CDS) contains the instructions for building a protein. Flanking the CDS are two non-coding sections: the 5' untranslated region (5' UTR) and the 3' untranslated region (3' UTR). These regions regulate gene expression, affecting things like mRNA stability, localization, and translation efficiency.
+You might assume that the entire mature mRNA is used to build a protein — but only part of it is. The actual **coding sequence (CDS)** contains the instructions for building a protein. Flanking the CDS are **two non-coding sections**: the 5' untranslated region (**5' UTR**) and the 3' untranslated region (**3' UTR**). These regions *regulate gene expression*, affecting things like mRNA stability, localization, and translation efficiency.
 
-The complete set of RNA molecules in a cell is called the **transcriptome**, and the study of all transcripts is known as transcriptomics.
+The complete set of RNA molecules in a cell is called the **transcriptome**, and the study of all transcripts is known as **transcriptomics**.
 {: .notice-primary}
 
-In eukaryotic cells, additional modifications are added:
+In **eukaryotic** cells, additional **modifications** are added:
 
-- A 5' cap (a modified guanine nucleotide) is attached to the beginning of the strand.
+- A **5' cap** (a modified guanine nucleotide) is attached **to the beginning** of the strand.
+- A **poly-A tail** (a long string of adenosines, ~150–250 bases) is added **to the end**.
 
-- A poly-A tail (a long string of adenosines, ~150–250 bases) is added to the end.
+These features *protect the mRNA from degradation*, assist in export from the nucleus, and help the ribosome recognize the transcript during translation. **Neither the cap nor the tail is directly encoded in the DNA**, but a **polyadenylation signal** (typically AAUAAA or AUUAAA in RNA and AATAAA or ATTAAA in DNA) **within the 3' UTR** triggers the addition of the tail.
 
-These features protect the mRNA from degradation, assist in export from the nucleus, and help the ribosome recognize the transcript during translation. Neither the cap nor the tail is directly encoded in the DNA, but a polyadenylation signal (typically AAUAAA or AUUAAA in RNA and AATAAA or ATTAAA in DNA) within the 3' UTR triggers the addition of the tail.
-
-**IMPORTANT**: Not every possible splice variant is viable. If a spliced mRNA lacks the poly-A signal or the cap, it won't be exported from the nucleus or translated — it may be degraded instead.
+**IMPORTANT**: **Not every possible splice variant is viable**. If a spliced mRNA lacks the poly-A signal or the cap, it won't be exported from the nucleus or translated — it may be degraded instead.
 {: .notice--warning}
 
 Note: In our code examples, we use a shorter poly-A tail of just 10 A's for simplicity, though real tails are much longer.
@@ -893,9 +887,9 @@ def splice(rna):
 
 ## Codons and Coding Sequence (CDS)
 
-The coding sequence (CDS) is the portion of a mature mRNA that gets translated into a protein. Each group of three bases is a codon, and each codon specifies a particular amino acid to be added to the growing protein chain. The CDS starts at a special codon (AUG), which not only marks the start of translation but also codes for the amino acid methionine (though it may be cleaved later).
+The coding sequence (CDS) is the portion of a mature mRNA that **gets translated into a protein**. Each **group of three bases is a codon**, and each **codon specifies a particular amino acid** to be added to the growing protein chain. The CDS starts at a **special codon (AUG)**, which not only marks the **start** of translation but also codes for the amino acid methionine (though it may be cleaved later).
 
-Since the mRNA alphabet consists of four bases — A, C, G, and U — there are 4x4x4 = 64 possible codons, such as AAA, UGC, or CGA. Most codons code for an amino acid, but there are three special codons (UAA, UAG, and UGA) that act solely as stop signals to terminate the translation.
+Since the mRNA alphabet consists of four bases — A, C, G, and U — there are 4x4x4 = **64 possible codons**, such as AAA, UGC, or CGA. Most codons code for an amino acid, but there are **three special codons** (UAA, UAG, and UGA) that act solely as **stop signals** to terminate the translation.
 
 ### CDS and UTR in Python
 
@@ -1024,13 +1018,13 @@ def three_prime_utr(rna):
 
 ## Amino Acids and Translation
 
-Once the mature mRNA is exported from the nucleus into the cytoplasm, it is picked up by a ribosome — a molecular machine that reads the RNA three nucleotides (one codon) at a time.
+Once the mature **mRNA is exported from the nucleus** into the cytoplasm, it is picked up by a **ribosome** — a molecular machine that **reads the RNA three nucleotides (one codon) at a time**.
 
-Although there are 64 possible codons, the genetic code is degenerate or redundant, meaning multiple codons can specify the same amino acid. For example, the codons GCU, GCC, GCG, and GCA all code for alanine. This redundancy helps buffer against some mutations.
+Although there are 64 possible codons, the genetic code is **degenerate** or redundant, meaning **multiple codons can specify the same amino acid**. For example, the codons GCU, GCC, GCG, and GCA all code for alanine. This redundancy helps *buffer against some mutations*.
 
-Translation begins at a specific start codon, which has the nucleotide sequence AUG, and ends at one of the stop codons (UAA, UAG, or UGA). Once the ribosome encounters one of these stop codons, it halts translation, releasing the completed protein. All codons between the start codon and the stop codon are translated in order, one at a time, into a chain of amino acids — a polypeptide — which folds into a functional protein.
+Translation begins at a specific start codon, which has the nucleotide sequence AUG, and ends at one of the stop codons (UAA, UAG, or UGA). Once the ribosome encounters one of these stop codons, it halts translation, releasing the completed protein. All codons between the start codon and the stop codon are translated in order, one at a time, into **a chain of amino acids — a polypeptide — which folds into a functional protein**.
 
-To determine which amino acid a codon corresponds to, a codon wheel (shown below) can be used. You start from the center of the wheel and move outward: the amino acid name or abbreviation appears in the outermost layer.
+To determine which amino acid a codon corresponds to, a **codon wheel** (shown below) can be used. You start from the center of the wheel and move outward: the amino acid name or abbreviation appears in the outermost layer.
 
 <img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/Aminoacids_table.svg.png" />
 
@@ -1114,20 +1108,20 @@ def translate(rna):
 
 ## Proteins
 
-A chain of amino acids produced by the ribosome is called a polypeptide. A protein consists of one or more polypeptide chains that fold into a specific 3D structure and work together as a functional unit.
+A chain of amino acids produced by the ribosome is called a polypeptide. A **protein** consists of **one or more polypeptide chains** that fold into a specific 3D structure and work together as a functional unit.
 
-After translation, polypeptides often undergo post-translational modifications that affect their folding, stability, localization, activity, and overall function.
+After translation, polypeptides often undergo *post-translational modifications* that affect their folding, stability, localization, activity, and overall function.
 
 **Proteomics** is the large-scale study of proteins — including their structures, functions, modifications, and interactions.
 {: .notice--primary}
 
-Although gene expression, often measured by quantifying mRNA molecules in a sample, can serve as a proxy for protein production, the relationship is not always straightforward. mRNA transcripts vary in stability; some degrade quickly after being translated only a few times, while others persist and are translated repeatedly. In addition, protein molecules themselves have widely different half-lives, ranging from hours to over a week, further influencing the correlation between mRNA abundance and protein levels.
+Although **gene expression**, often measured by quantifying mRNA molecules in a sample, can serve as a **proxy for protein production**, the relationship is not always straightforward. mRNA **transcripts vary in stability**; some degrade quickly after being translated only a few times, while others persist and are translated repeatedly. In addition, protein molecules themselves have widely different half-lives, ranging from hours to over a week, further influencing the correlation between mRNA abundance and protein levels.
 
 ## Example
 
-Let's work through an example using a hypothetical diploid eukaryotic organism that has a single chromosome containing a single gene.
+Let's work through an example using a **hypothetical diploid eukaryotic organism** that has a **single chromosome** containing a **single gene**.
 
-First, we create the genetic material of its mother: starting from a coding strand of DNA, we apply DNA polymerase to generate the complementary template strand. There we have it—our first piece of double-stranded DNA.
+First, we create the genetic material of its mother: starting from a **coding strand of DNA**, we apply DNA polymerase to **generate the complementary template strand**. There we have it—our first piece of double-stranded DNA.
 
 
 ```python
@@ -1138,7 +1132,7 @@ dna_0.show(50)
 dna_0
 ```
 
-Output
+*Output*
 
 ```
 DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
@@ -1158,7 +1152,7 @@ dna_1.show(50)
 dna_1
 ```
 
-Output
+*Output*
 
 ```
 DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
@@ -1167,7 +1161,7 @@ DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
 ```
 
 
-One chromosome from the mother, another from the father, we have our little genome ready:
+One chromosome from the mother, another from the father, we have our little **genome** ready:
 
 
 ```python
@@ -1177,7 +1171,7 @@ genome = Genome([chr1_0, chr1_1])
 genome
 ```
 
-Output
+*Output*
 
 ```
 chr #1 | homologous 0 | autosome T
@@ -1185,7 +1179,7 @@ chr #1 | homologous 1 | autosome T
 ```
 
 
-This particular organism has a single gene on its chromosome: the MT gene (you’ll soon see why it’s called MT). The gene spans positions 10 to 122 on the chromosome.
+This particular organism has a **single gene** on its chromosome: the **MT gene** (you’ll soon see why it’s called MT). The gene spans positions 10 to 122 on the chromosome (in reality, the location of a gene within a chromosome varies and it is determined during the read alignment process).
 
 
 ```python
@@ -1193,14 +1187,14 @@ mt_gene = Gene(genome, 1, 10, 122)
 mt_gene
 ```
 
-Output
+*Output*
 
 ```
 Gene: chr #1 Position: 10-122
 ```
 
 
-Let’s check the alleles—the two different versions of the gene in each chromosome of the pair:
+Let’s check the **alleles**—the two different versions of the gene in each chromosome of the pair:
 
 
 ```python
@@ -1210,7 +1204,7 @@ mt_alleles[1].show(40)
 mt_alleles
 ```
 
-Output
+*Output*
 
 ```
 (DNA: (+) 5' CGGACCATGGCAAGAAAGGT...TAATTCGCAATAAACGA 3' (113 bps)
@@ -1222,9 +1216,9 @@ Output
 ```
 
 
-We can't really tell but the two alleles are slightly different from one another. We'll transcribe and translate the first one (from `chr1_0`) and you'll try your hand with the other one (`chr1_1`) to find the difference in translation.
+We can't really tell but the two alleles are slightly different from one another. We'll **transcribe and translate the first one** (from `chr1_0`) and you'll try your hand with the other one (`chr1_1`) to find the difference in translation.
 
-Now, let's transcribe the gene from the first chromosome:
+Now, let's **transcribe** the gene from the first chromosome:
 
 
 ```python
@@ -1233,7 +1227,7 @@ rna.show(40)
 rna
 ```
 
-Output
+*Output*
 
 ```
 RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG...AUUCGCAAUAAACGA 3' (113 bps)
@@ -1242,7 +1236,7 @@ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG...AUUCGCAAUAAACGA 3' (113 bps)
 
 Notice the "m7G" cap prepended to the RNA strand. It’s one of the modifications mRNA undergoes to allow export from the nucleus to the cytoplasm.
 
-It’s time to splice the pre-mRNA. First, let’s identify the introns:
+It’s time to **splice the pre-mRNA**. First, let’s identify the **introns**:
 
 
 ```python
@@ -1250,14 +1244,14 @@ introns = find_introns(rna)
 introns
 ```
 
-Output
+*Output*
 
 ```
 ['GUUCAUUGCGGACAG', 'GUCCAACCACAG', 'GUUUUAACGCGGCAG']
 ```
 
 
-What about the exons?
+What about the **exons**?
 
 
 ```python
@@ -1265,7 +1259,7 @@ exons = get_exons(rna, introns)
 exons
 ```
 
-Output
+*Output*
 
 ```
 ['CGGACCAUGGCAAGAAAG',
@@ -1275,7 +1269,7 @@ Output
 ```
 
 
-Remember, splicing allows for different combinations of exons, as long as their ordering is preserved:
+Remember, splicing allows for **different combinations of exons**, as long as their **ordering is preserved**:
 
 
 ```python
@@ -1283,7 +1277,7 @@ transcripts = splice(rna)
 transcripts
 ```
 
-Output
+*Output*
 
 ```
 [RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG 3' (18 bps),
@@ -1304,9 +1298,9 @@ Output
 ```
 
 
-Out of the 15 theoretical isoforms, did you notice anything in particular?
+Out of the 15 theoretical **isoforms**, did you notice anything in particular?
 
-Some have poly-A tails, some do not. Those mRNAs without a poly-A tail will be degraded, so we ignore them.
+Some have poly-A tails, some do not. Those mRNAs *without* a poly-A tail will be degraded, so we ignore them.
 
 
 ```python
@@ -1314,7 +1308,7 @@ transcripts_with_tails = [t for t in transcripts if t.has_poly_a_tail]
 transcripts_with_tails
 ```
 
-Output
+*Output*
 
 ```
 [RNA: (+) 5'  m7G-CACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (26 bps),
@@ -1328,7 +1322,7 @@ Output
 ```
 
 
-We're left with 8 isoforms. Still, not all of them contain a well-defined coding sequence (CDS)—some may lack a start codon (AUG). Let’s filter those out too:
+We're left with 8 isoforms. Still, not all of them contain a well-defined **coding sequence (CDS)**—some may lack a **start codon (AUG)**. Let’s filter those out too:
 
 
 ```python
@@ -1336,7 +1330,7 @@ transcripts_with_cds = [t for t in transcripts_with_tails if cds(t) is not None]
 transcripts_with_cds
 ```
 
-Output
+*Output*
 
 ```
 [RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
@@ -1346,14 +1340,14 @@ Output
 ```
 
 
-We can now inspect the three regions of one of the valid transcripts: CDS, 5' UTR, and 3' UTR.
+We can now inspect the **three regions** of one of the **valid transcripts**: CDS, 5' UTR, and 3' UTR.
 
 
 ```python
 cds(transcripts_with_cds[0]), five_prime_utr(transcripts_with_cds[0]), three_prime_utr(transcripts_with_cds[0])
 ```
 
-Output
+*Output*
 
 ```
 ('AUGGCAAGAAAGCACGAGCGUGAAUAA', 'm7G-CGGACC', 'AUAAUUCGCAAUAAA-AAAAAAAAAA')
@@ -1362,7 +1356,7 @@ Output
 
 The CDS starts with an AUG codon and ends with an UAA stop codon, which is not translated. The 5' UTR includes the cap and a few nucleotides before the CDS. The 3' UTR contains the polyadenylation signal (AAUAAA) and the poly-A tail.
 
-Finally, we translate the four viable mRNAs into polypeptide chains:
+Finally, we **translate** the four viable mRNAs **into polypeptide chains**:
 
 
 ```python
@@ -1370,13 +1364,15 @@ polypeptides = [translate(t) for t in transcripts_with_cds]
 polypeptides
 ```
 
-Output
+*Output*
 
 ```
 ['MARKHERE', 'MARKTWAINHERE', 'MARKWASHERE', 'MARKTWAINWASHERE']
 ```
 
 
-Now you know why it’s called the MT gene. 🙂
+Now you know why it’s called the **MT (Mark Twain) gene**. 🙂
 
-Try transcribing the MT gene from the other chromosome (`chr1_1`) and see what you get!
+Try transcribing the MT gene from the other chromosome (`chr1_1`) and see what you get.
+
+Have fun!
