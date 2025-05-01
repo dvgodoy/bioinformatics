@@ -59,7 +59,7 @@ plugins:
 
 author:
   name   : "Daniel Voigt Godoy"
-  avatar : "bioinformatics/assets/images/bio-photo.jpg"
+  avatar : "assets/images/bio-photo.jpg"
   bio    : "A data scientist and programmer on a quest to learn bioinformatics!"
   links:
     - label: "Website"
