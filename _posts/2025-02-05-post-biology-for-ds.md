@@ -608,7 +608,7 @@ In classical genetics, traits are often categorized as dominant or recessive:
 - A **dominant** allele will determine the trait even if only one copy is present (e.g., Aa).
 - A **recessive** allele only produces its associated trait when both copies are present (e.g., aa).
 
-Note that ***dominance** refers to phenotypic outcome*, such as whether a pea appears green or yellow, **not to the level of gene expression**, meaning the number of RNA transcripts produced. A pea may display the yellow phenotype dictated by the dominant allele, even if that allele is expressed at a lower level than the recessive one.
+Note that **dominance** refers to **phenotypic outcome**, such as whether a pea appears green or yellow, **not to the level of gene expression**, meaning the number of RNA transcripts produced. A pea may display the yellow phenotype dictated by the dominant allele, even if that allele is expressed at a lower level than the recessive one.
 
 ### Alleles in Python
 
