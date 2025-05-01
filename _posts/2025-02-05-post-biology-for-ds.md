@@ -30,9 +30,9 @@ After all, code is easier to understand — don’t you think? 😊
 
 Here is the diagram you can use for reference as read through this post.
 
-<img width=800 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/overall.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/overall.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
 It depicts a step-by-step overview of the **central dogma of molecular biology: from DNA to functional protein**. It starts with the genome, which consists of paired chromosomes inherited from each parent. Each chromosome contains genes, which are sequences of DNA. Genes have two strands: a coding strand and a template strand. During transcription, the template strand is used to synthesize a pre-mRNA molecule that includes untranslated regions (UTRs), exons, and introns.
 
@@ -56,11 +56,14 @@ The `Genome` class below can be used to represent a genome and its chromosomes (
 ```python
 class Genome(object):
     """
-    Represents the complete genome of an organism, composed of a set of chromosomes.
+    Represents the complete genome of an organism, composed of
+    a set of chromosomes.
 
     Attributes:
-        chromosomes (list): A list of Chromosome objects belonging to the organism.
-        karyotype (int): The number of chromosomes in the genome (including homologous pairs).
+        chromosomes (list): A list of Chromosome objects 
+                            belonging to the organism.
+        karyotype (int): The number of chromosomes in the 
+                         genome (including homologous pairs).
     """
     def __init__(self, chromosomes):
         self.chromosomes = chromosomes
@@ -68,13 +71,15 @@ class Genome(object):
 
     def get_ith_chromosomes(self, i):
         """
-        Retrieves all chromosomes with a given chromosome number (e.g., both homologous copies of chromosome 1).
+        Retrieves all chromosomes with a given chromosome 
+        number (e.g., both homologous copies of chromosome 1).
 
         Parameters:
             i (int): Chromosome number to retrieve.
         
         Returns:
-            list: Chromosome objects with the specified chromosome number.
+            list: Chromosome objects with the specified 
+                  chromosome number.
         """
         res = []
         for chrom in self.chromosomes:
@@ -84,9 +89,11 @@ class Genome(object):
 
     def __repr__(self):
         """
-        Returns a string representation of the genome by printing all chromosomes.
+        Returns a string representation of the genome by 
+        printing all chromosomes.
         """
-        return '\n'.join([chrom.__repr__() for chrom in self.chromosomes])
+        return '\n'.join([chrom.__repr__() 
+                          for chrom in self.chromosomes])
 ```
 
 ## Chromosomes
@@ -95,9 +102,9 @@ The genome is organized into chromosomes — long DNA molecules. In prokaryotes,
 
 Each parent contributes a haploid set of 23 chromosomes — about 3 billion base pairs — to the child, resulting in a diploid genome of approximately 6 billion base pairs (or 12 billion nucleotides). However, this DNA isn't evenly distributed across chromosomes, as shown in the illustration below:
 
-<img width=800 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/karyotype2.jpg" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/karyotype2.jpg" />
 
-Source: Normal male 46,XY human karyotype. Wessex Reg. Genetics Centre. [Wellcome Collection](https://wellcomecollection.org/works/zd7rdetc). Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+*Source: Normal male 46,XY human karyotype. Wessex Reg. Genetics Centre. [Wellcome Collection](https://wellcomecollection.org/works/zd7rdetc). Licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)*
 
 Human chromosomes vary greatly in size, ranging from about 47 million to 247 million base pairs. They’re numbered roughly in order of decreasing size, from chromosome 1 to 22. Interestingly, chromosome 21 is actually slightly shorter than chromosome 22. These 22 numbered chromosomes are called autosomes. The remaining two — X and Y — are known as sex chromosomes.
 
@@ -127,23 +134,34 @@ class Chromosome(object):
     Represents a chromosome within a genome.
 
     Attributes:
-        number (int): The chromosome number (e.g., 1 for chromosome 1).
-        homol_idx (int): Index identifying which homologous chromosome it is (e.g., 0 or 1).
-        dna (DNA): A DNA object representing the sequence content of this chromosome.
-        is_autosome (bool): Indicates whether the chromosome is an autosome (True) or a sex chromosome (False).
+        number (int): The chromosome number 
+                      (e.g., 1 for chromosome 1).
+        homol_idx (int): Index identifying which homologous
+                         chromosome it is (e.g., 0 or 1).
+        dna (DNA): A DNA object representing the sequence 
+                   content of this chromosome.
+        is_autosome (bool): Indicates whether the chromosome
+                            is an autosome (True) or a sex 
+                            chromosome (False).
     """
     def __init__(self, number, homol_idx, dna, is_autosome=True):
-        self.number = number                  # Chromosome number
-        self.homol_idx = homol_idx            # 0 or 1 to identify the homolog in a pair
-        self.is_autosome = is_autosome        # Autosomes are non-sex chromosomes
-        self.dna = dna                        # Associated DNA sequence (double-stranded)
+        # Chromosome number
+        self.number = number
+        # 0 or 1 to identify the homolog in a pair
+        self.homol_idx = homol_idx
+        # Autosomes are non-sex chromosomes
+        self.is_autosome = is_autosome
+        # Associated DNA sequence (double-stranded)
+        self.dna = dna
 
     def __repr__(self):
         """
-        Returns a brief string summary of the chromosome, including number,
-        homolog index, and whether it's an autosome.
+        Returns a brief string summary of the chromosome, 
+        including number, homolog index, and whether it's
+        an autosome.
         """
-        return f'chr #{self.number} | homologous {self.homol_idx} | autosome {"T" if self.is_autosome else "F"}'
+        return f'chr #{self.number} | homologous {self.homol_idx} \
+                | autosome {"T" if self.is_autosome else "F"}'
 ```
 
 ## DNA
@@ -159,9 +177,9 @@ Despite strict base-pairing rules, the total amount of cytosine and guanine in a
 
 This complementarity is essential for DNA replication, which occurs during cell division (e.g., mitosis). Specialized enzymes like helicase first unzip the double helix by separating the two strands. Then DNA polymerase synthesizes new complementary strands by matching each exposed nucleotide with its pair. The result is two identical DNA molecules, each with one original strand and one newly synthesized strand.
 
-<img width=900 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/replication.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/replication.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
 Did you notice the 5' and 3' in the figure above? They indicate, respectively, the "head" and "tail" of each strand since new nucleotides can only be appended to the 3' end of the strand. We'll get back to it in a couple of sections.
 
@@ -181,10 +199,12 @@ class DNA(object):
 
 class Strand(object):
     """
-    Represents a DNA or RNA strand, storing its nucleotide sequence.
+    Represents a DNA or RNA strand, storing its nucleotide
+    sequence.
 
     Attributes:
-        nucleotides (str): The sequence of nucleotide bases (A, T, G, C, or U).
+        nucleotides (str): The sequence of nucleotide 
+                           bases (A, T, G, C, or U).
     """
     def __init__(self, nucleotides):
         self.nucleotides = nucleotides
@@ -198,7 +218,8 @@ The `dna_polymerase()` function can be used to synthesize a new complementary st
 ```python
 def dna_polymerase(strand):
     """
-    Simulates DNA replication by generating the complementary strand of a DNA sequence.
+    Simulates DNA replication by generating the complementary
+    strand of a DNA sequence.
     
     Parameters:
         strand (Strand): The original strand to replicate.
@@ -211,26 +232,31 @@ def dna_polymerase(strand):
 
 def replicate(dna):
     """
-    Simulates DNA replication by generating two identical DNA molecules
-    from the original double-stranded DNA.
+    Simulates DNA replication by generating two identical 
+    DNA molecules from the original double-stranded DNA.
 
-    Each strand of the original DNA serves as a template for the synthesis
-    of a new complementary strand.
+    Each strand of the original DNA serves as a template for
+    the synthesis of a new complementary strand.
 
     Args:
         dna (DNA): The original DNA molecule to be replicated.
 
     Returns:
-        tuple: A pair of new DNA objects representing the replicated molecules.
-               Each consists of one original strand and one newly synthesized complementary strand.
+        tuple: A pair of new DNA objects representing the 
+               replicated molecules. Each consists of one 
+               original strand and one newly synthesized 
+               complementary strand.
     """
-    # Use the original first strand as a template to create its complement
+    # Use the original first strand as a template to create 
+    # its complement
     second_copy = dna_polymerase(dna.first_strand)
     
-    # Use the original second strand as a template to create its complement
+    # Use the original second strand as a template to create
+    # its complement
     first_copy = dna_polymerase(dna.second_strand)
     
-    # Return two new DNA molecules, each made from one original and one new strand
+    # Return two new DNA molecules, each made from one original
+    # and one new strand
     return (DNA(dna.first_strand, second_copy), 
             DNA(first_copy, dna.second_strand))
 ```
@@ -243,9 +269,9 @@ Nucleotides form specific base pairs through hydrogen bonding: A always pairs wi
 
 Maybe the cartoon below can help you memorizing the pairs:
 
-<img width="600" src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/ATCGU.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/ATCGU.png" />
 
-Source: Generated by the author
+*Source: Generated by the author*
 
 Did you notice that A and G have pointy heads while C, T, and U have dented heads? Chemically, nucleotides fall into two categories:
 
@@ -255,25 +281,25 @@ Did you notice that A and G have pointy heads while C, T, and U have dented head
 
 Each nucleotide consists of a nitrogenous base (A, C, G, T, or U), a sugar (deoxyribose in DNA, ribose in RNA), and a phosphate group. In DNA, the sugars (D) and phosphates (P) link together in an alternating pattern to form the sugar-phosphate backbone — the "rails" of the DNA ladder. The bases stick out and pair across the two strands to form the ladder's "rungs."
 
-<img width=600 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dna.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dna.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
 ## Deoxyribose and Strandness
 
 The sugar in DNA — deoxyribose — gives DNA the "D" in its name. Deoxyribose is a five-carbon sugar with a ring-like structure, typically drawn as a pentagon. One corner of the ring contains an oxygen atom; the remaining four vertices are carbon atoms, numbered 1' through 4', starting to the right of the oxygen and proceeding clockwise. A fifth carbon (5') is not part of the ring but branches off the 4' carbon, as you can see in the figure below:
 
-<img width=200 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/deoxyribose.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/deoxyribose.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
 Two of these carbon positions — 3' and 5' — play a critical structural role. They are the connection points for phosphate (P) groups that link nucleotides together in a chain. These connections define the directionality of a DNA strand. By convention, a DNA strand is read and written from the 5' end (which has a free phosphate group) to the 3' end (which has a free hydroxyl group). This is referred to as the 5' to 3' direction.
 
 DNA is composed of two strands, and these strands are always aligned in opposite orientations — they are said to be **anti-parallel**. That means one strand runs from 5' to 3', while the other runs from 3' to 5'. This directionality has major biological implications. For example, during DNA replication, new nucleotides can only be added to the 3' end of a growing strand — a rule that governs how enzymes like DNA polymerase operate.
 
-<img width=600 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dna_strands.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dna_strands.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
 ### Strand in Python (Improved)
 
@@ -283,11 +309,14 @@ We're improving the `Strand` class to include strand direction.
 ```python
 class Strand(object):
     """
-    Represents a DNA or RNA strand, storing its nucleotide sequence and directionality.
+    Represents a DNA or RNA strand, storing its nucleotide 
+    sequence and directionality.
 
     Attributes:
-        nucleotides (str): The sequence of nucleotide bases (A, T, G, C, or U).
-        is_positive (bool): Indicates the strand direction. True for 5' to 3', False for 3' to 5'.
+        nucleotides (str): The sequence of nucleotide 
+                           bases (A, T, G, C, or U).
+        is_positive (bool): Indicates the strand direction.
+                            True for 5' to 3',False for 3' to 5'.
     """
     def __init__(self, nucleotides, is_positive=True):
         self.nucleotides = nucleotides
@@ -295,7 +324,8 @@ class Strand(object):
         self.show_length = 80
 
     def __getitem__(self, index):
-        # Supports slicing or indexing to return a new Strand instance with the same orientation.
+        # Supports slicing or indexing to return a new Strand 
+        # instance with the same orientation.
         return Strand(self.nucleotides[index], self.is_positive)
 
     @property
@@ -311,13 +341,18 @@ class Strand(object):
         self.show_length = length
 
     def __repr__(self):
-        # Creates a readable representation showing direction, sequence (trimmed if long), and length.
+        # Creates a readable representation showing direction, 
+        # sequence (trimmed if long), and length.
         fprime = "(+) 5'"
         tprime = "(-) 3'"
         nucleotides = self.read()
         if len(nucleotides) > self.show_length:
-            nucleotides = nucleotides[:int(self.show_length/2)] + '...' + nucleotides[-int(self.show_length/2)+3:]
-        return f'{fprime if self.is_positive else tprime} {nucleotides} {tprime[4:] if self.is_positive else fprime[4:]} ({len(self.read())} bps)'
+            nucleotides = nucleotides[:int(self.show_length/2)] \
+                +'...'+ nucleotides[-int(self.show_length/2)+3:]
+        return f'{fprime if self.is_positive else tprime} \
+                 {nucleotides} {tprime[4:] \
+                 if self.is_positive else fprime[4:]} \
+                 ({len(self.read())} bps)'
 ```
 
 ### DNA Replication in Python (Improved)
@@ -328,16 +363,19 @@ We're also improving the `dna_polymerase()` function to account for strand direc
 ```python
 def dna_polymerase(strand):
     """
-    Simulates DNA replication by generating the complementary strand of a DNA sequence.
+    Simulates DNA replication by generating the complementary 
+    strand of a DNA sequence.
     
     Parameters:
         strand (Strand): The original strand to replicate.
         
     Returns:
-        Strand: The complementary strand with reversed direction.
+        Strand: The complementary strand with reversed 
+                direction.
     """
     complement = str.maketrans("ATGC", "TACG")
-    return Strand(strand.read().translate(complement), not strand.positive)
+    return Strand(strand.read().translate(complement), 
+                  not strand.positive)
 ```
 
 ## Genes
@@ -358,13 +396,17 @@ The `Gene` class below can be used to define the region of a chromosome (in a gi
 ```python
 class Gene(object):
     """
-    Represents a gene located on a specific chromosome within a genome.
+    Represents a gene located on a specific chromosome within
+    a genome.
 
     Attributes:
         genome (Genome): The genome object this gene belongs to.
-        chr_number (int): The chromosome number where the gene is located.
-        start (int): The starting index (inclusive) of the gene on the chromosome.
-        end (int): The ending index (inclusive) of the gene on the chromosome.
+        chr_number (int): The chromosome number where the gene 
+                          is located.
+        start (int): The starting index (inclusive) of the gene 
+                     on the chromosome.
+        end (int): The ending index (inclusive) of the gene on
+                   the chromosome.
     """
     def __init__(self, genome, chr_number, start, end):
         self.genome = genome
@@ -374,9 +416,11 @@ class Gene(object):
 
     def __repr__(self):
         """
-        Provides a readable string representation of the gene location.
+        Provides a readable string representation of the gene 
+        location.
         """
-        return f'Gene: chr #{self.chr_number} Position: {self.start}-{self.end}'
+        return f'Gene: chr #{self.chr_number} \
+                 Position: {self.start}-{self.end}'
 ```
 
 ## The Central Dogma of Molecular Biology
@@ -391,9 +435,9 @@ The central dogma follows this path: DNA → RNA → Protein
 
 While not strictly part of the central dogma, DNA replication is also essential — it ensures that genetic information is preserved and passed on when cells divide.
 
-<img width=600 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dogma.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/dogma.png" />
 
-Source: Image generated by the author
+*Source: Image generated by the author*
 
 ## RNA and Transcription
 
@@ -403,13 +447,12 @@ During transcription, one of the two DNA strands — called the template strand 
 
 The initial product is called pre-mRNA (or precursor mRNA). It includes not just protein-coding sequences (called exons) but also non-coding segments called introns, as well as other untranslated regions (UTRs). Before the mRNA can be used to make a protein, it undergoes processing — including splicing, capping, and tailing — to produce a mature mRNA molecule that contains (almost) only the coding instructions.
 
-<img width=600 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/transcription.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/transcription.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
-***
 **Key Difference**: RNA uses the nucleotides A, C, G, and U (uracil), while DNA uses A, C, G, and T (thymine).
-***
+{: .notice--warning}
 
 ### RNA and (Improved) DNA in Python
 
@@ -422,8 +465,10 @@ class RNA(object):
     Represents an RNA molecule, either pre-mRNA or mature mRNA.
 
     Attributes:
-        strand (Strand): The nucleotide sequence (as a Strand object).
-        is_pre (bool): Flag indicating whether the RNA is pre-mRNA (True) or mature (False).
+        strand (Strand): The nucleotide sequence (as a Strand 
+                         object).
+        is_pre (bool): Flag indicating whether the RNA is 
+                       pre-mRNA (True) or mature (False).
     """
     def __init__(self, strand, is_pre=True):
         self.strand = strand
@@ -440,7 +485,8 @@ class RNA(object):
 
 class DNA(object):
     """
-    Represents a double-stranded DNA molecule with a positive (coding) and a negative (template) strand.
+    Represents a double-stranded DNA molecule with a positive 
+    (coding) and a negative (template) strand.
     """
     def __init__(self, first_strand, second_strand):
         assert first_strand.positive
@@ -451,19 +497,23 @@ class DNA(object):
 
     @property
     def template_strand(self):
-        """Returns the negative (template) strand used in transcription."""
+        """Returns the negative (template) strand used in 
+        transcription."""
         return self.second_strand
 
     @property
     def coding_strand(self):
-        """Returns the positive (coding) strand, identical to mRNA except T is used instead of U."""
+        """Returns the positive (coding) strand, identical to
+        mRNA except T is used instead of U."""
         return self.first_strand
 
     def __getitem__(self, index):
         """
-        Enables slicing of the DNA object, preserving both strands in the region.
+        Enables slicing of the DNA object, preserving both 
+        strands in the region.
         """
-        return DNA(self.first_strand[index], self.second_strand[index])
+        return DNA(self.first_strand[index], 
+                   self.second_strand[index])
 
     def show(self, length):
         # Defines the length of the nucleotide sequence shown
@@ -473,11 +523,13 @@ class DNA(object):
     
     def __repr__(self):
         """
-        Visual representation of the DNA molecule showing base-pair alignment.
+        Visual representation of the DNA molecule showing 
+        base-pair alignment.
         """
         first = self.first_strand.__repr__()
         second = self.second_strand.__repr__()
-        mid = ''.join(['|' if c in 'ATCGU' else ' ' for c in first])
+        mid = ''.join(['|' if c in 'ATCGU' else ' ' 
+                       for c in first])
         return f'DNA: {first}\n     {mid}\n     {second}'
 ```
 
@@ -489,33 +541,41 @@ The `rna_polymerase()` function below can be used to synthesize a new RNA strand
 ```python
 def rna_polymerase(strand):
     """
-    Simulates the action of RNA polymerase, transcribing a DNA strand into RNA.
+    Simulates the action of RNA polymerase, transcribing a DNA
+    strand into RNA.
 
     Args:
-        strand (Strand): The DNA strand to be transcribed (usually the template strand).
+        strand (Strand): The DNA strand to be transcribed 
+                         (usually the template strand).
 
     Returns:
-        Strand: The resulting RNA strand (complementary to the template strand).
+        Strand: The resulting RNA strand (complementary to 
+                the template strand).
     """
     # Transcription: A -> U, T -> A, G -> C, C -> G
     complement = str.maketrans("ATGC", "UACG")
-    return Strand(strand.read().translate(complement), not strand.positive)
+    return Strand(strand.read().translate(complement), 
+                  not strand.positive)
 
 
 def transcribe(dna, gene):
     """
-    Transcribes the gene region from a DNA molecule into a pre-mRNA molecule.
+    Transcribes the gene region from a DNA molecule into a 
+    pre-mRNA molecule.
 
     Args:
         dna (DNA): The full DNA molecule containing the gene.
-        gene (Gene): The gene object, with start and end indices on the chromosome.
+        gene (Gene): The gene object, with start and end 
+                     indices on the chromosome.
 
     Returns:
-        RNA: A pre-mRNA strand resulting from transcription of the gene.
+        RNA: A pre-mRNA strand resulting from transcription of
+             the gene.
     """
     start = gene.start
     end = gene.end
-    # Extract the template strand segment corresponding to the gene
+    # Extract the template strand segment corresponding 
+    # to the gene
     region = dna[start:end + 1].template_strand
     # Transcribe it into RNA
     return RNA(rna_polymerase(region), is_pre=True)
@@ -551,20 +611,22 @@ The `alleles()` function below can be used to extract the two alleles/variants o
 ```python
 def alleles(gene):
     """
-    Extracts the two alleles (maternal and paternal variants) of a given gene
-    from its chromosome pair in the genome.
+    Extracts the two alleles (maternal and paternal variants) of
+    a given gene from its chromosome pair in the genome.
 
     Args:
-        gene (Gene): The gene object, which includes the chromosome number and start/end positions.
+        gene (Gene): The gene object, which includes the 
+                     chromosome number and start/end positions.
 
     Returns:
-        tuple: A pair of DNA substrings representing the gene's alleles 
-               from the homologous chromosomes.
+        tuple: A pair of DNA substrings representing the gene's
+               alleles from the homologous chromosomes.
     """
     # Retrieve the homologous chromosome pair for the gene
     chrs = gene.genome.get_ith_chromosomes(gene.chr_number)
     
-    # Determine consistent ordering based on homology index (0 or 1)
+    # Determine consistent ordering based on homology index
+    # (0 or 1)
     i = 0 if (chrs[0].homol_idx == 0) else 1
 
     # Slice the gene's sequence from both chromosomes
@@ -598,9 +660,9 @@ Splicing is driven by specific sequence motifs that mark the boundaries between 
 
 While these motifs are not absolute rules, they guide the spliceosome, the cellular machinery that performs splicing. Exceptions exist, but most splicing events follow this general GT-AG rule.
 
-<img width=800 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/cds.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/cds.png" />
 
-Source: Image by the author
+*Source: Image by the author*
 
 ### Exons and Introns in Python
 
@@ -613,14 +675,16 @@ import itertools
 
 def gt_ag_rule(nucleotides, is_dna=True):
     """
-    Identifies intron-like regions based on the GT/AG (or GU/AG) splicing rule.
+    Identifies intron-like regions based on the GT/AG 
+    (or GU/AG) splicing rule.
 
     Args:
         nucleotides (str): The full nucleotide sequence.
         is_dna (bool): True if the sequence is DNA, False if RNA.
 
     Returns:
-        list: All matched intron sequences (non-greedy) that start with GT/GU and end with AG.
+        list: All matched intron sequences (non-greedy) that 
+              start with GT/GU and end with AG.
     """
     # In DNA, introns typically start with 'GT' and end with 'AG'
     # In RNA, those become 'GU' and 'AG'
@@ -631,31 +695,36 @@ def gt_ag_rule(nucleotides, is_dna=True):
 
 def find_introns(rna):
     """
-    Finds intron-like regions in an RNA sequence using the GU/AG rule.
+    Finds intron-like regions in an RNA sequence using 
+    the GU/AG rule.
 
     Args:
         rna (RNA): An RNA object.
 
     Returns:
-        list: Intron-like subsequences based on the GU...AG pattern.
+        list: Intron-like subsequences based on the 
+              GU...AG pattern.
     """
     return gt_ag_rule(rna.strand.read(), is_dna=False)
 
 
 def get_exons(rna, introns):
     """
-    Splits the RNA sequence into exons by removing intron sequences.
+    Splits the RNA sequence into exons by removing intron
+    sequences.
 
     Args:
         rna (RNA): An RNA object.
         introns (list): A list of identified intron subsequences.
 
     Returns:
-        list: List of exon sequences (segments not matching any introns).
+        list: List of exon sequences (segments not matching 
+              any introns).
     """
     sequence = rna.strand.read()
     if not introns:
-        return [sequence]  # If no introns found, the entire strand is exon
+        # If no introns found, the entire strand is exon
+        return [sequence]
     return re.split('|'.join(map(re.escape, introns)), sequence)
 ```
 
@@ -692,14 +761,18 @@ class RNA(object):
     Represents an RNA molecule, either pre-mRNA or mature mRNA.
 
     Attributes:
-        strand (Strand): The nucleotide sequence (as a Strand object).
-        is_pre (bool): Flag indicating whether the RNA is pre-mRNA (True) or mature (False).
-        has_poly_a_tail (bool): Automatically derived from is_pre; True if mature.
+        strand (Strand): The nucleotide sequence 
+                         (as a Strand object).
+        is_pre (bool): Flag indicating whether the RNA is 
+                       pre-mRNA (True) or mature (False).
+        has_poly_a_tail (bool): Automatically derived from 
+                                is_pre; True if mature.
     """
     def __init__(self, strand, is_pre=True):
         self.strand = strand
         self.is_pre = is_pre
-        self.has_poly_a_tail = not is_pre  # Mature RNAs have poly-A tails
+        # Mature RNAs have poly-A tails
+        self.has_poly_a_tail = not is_pre
         self.show_length = 80
         
     def show(self, length):
@@ -709,14 +782,15 @@ class RNA(object):
 
     def __repr__(self):
         """
-        Returns a string representation of the RNA sequence, with:
+        Returns a string representation of the RNA sequence, with
         - a 5' cap (m7G-) prepended
         - a 3' poly-A tail appended, if it's mature mRNA
         """
         # Get the basic string form from the strand object
         first = self.strand.__repr__()
 
-        # Extract the raw nucleotide sequence from the representation
+        # Extract the raw nucleotide sequence from the 
+        # representation
         nucleotides = first.split(' ')[2]
 
         # Add 5' cap
@@ -724,7 +798,8 @@ class RNA(object):
 
         # Add 3' poly-A tail if it's a mature mRNA
         if self.has_poly_a_tail:
-            first = first.replace(nucleotides, nucleotides + '-AAAAAAAAAA')
+            first = first.replace(nucleotides, 
+                                  nucleotides + '-AAAAAAAAAA')
 
         return f'RNA: {first}'
 ```
@@ -737,41 +812,56 @@ The `splice()` function below performs mRNA splicing, including alternative spli
 ```python
 def splice(rna):
     """
-    Simulates alternative splicing of a pre-mRNA strand into multiple mRNA variants.
+    Simulates alternative splicing of a pre-mRNA strand into
+    multiple mRNA variants.
 
-    This function generates all non-empty combinations of exons from the input pre-mRNA,
-    checks each for a polyadenylation signal, and constructs mature or pre-mRNA variants accordingly.
+    This function generates all non-empty combinations of exons 
+    from the input pre-mRNA, checks each for a polyadenylation 
+    signal, and constructs mature or pre-mRNA variants 
+    accordingly.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        list of RNA: A list of RNA objects representing different spliced variants.
-                     Each RNA object is flagged as mature or pre-mRNA depending on whether
-                     a polyadenylation signal was found in the spliced sequence.
+        list of RNA: A list of RNA objects representing different
+                     spliced variants. Each RNA object is flagged
+                     as mature or pre-mRNA depending on whether
+                     a polyadenylation signal was found in the 
+                     spliced sequence.
     """
-    introns = find_introns(rna)                   # Identify intronic regions
-    exons = get_exons(rna, introns)               # Extract exon sequences based on introns
+    # Identify intronic regions
+    introns = find_introns(rna)
+    # Extract exon sequences based on introns
+    exons = get_exons(rna, introns)
 
-    exon_combinations = []                        # Prepare all possible exon combinations
+    # Prepare all possible exon combinations
+    exon_combinations = []
     for i in range(len(exons) + 1):
         exon_combinations.extend(itertools.combinations(exons, i))
 
-    spliced_variants = []                         # Store resulting mRNA variants
-    for combo in exon_combinations[1:]:           # Skip empty combination
-        sequence = ''.join(combo)                 # Concatenate selected exons into one sequence
+    # Store resulting mRNA variants
+    spliced_variants = []
+    # Skip empty combination (0)
+    for combo in exon_combinations[1:]:
+        # Concatenate selected exons into one sequence
+        sequence = ''.join(combo)
 
-        # Check for polyadenylation signal (required for export & translation)
-        signal_pos = (sequence.find('AAUAAA'), sequence.find('AUUAAA'))
+        # Check for polyadenylation signal (required for export
+        # & translation)
+        signal_pos = (sequence.find('AAUAAA'), 
+                      sequence.find('AUUAAA'))
         valid_signals = [pos for pos in signal_pos if pos > 0]
 
         if valid_signals:
-            # Mature mRNA: keep only up to and including the signal
+            # Mature mRNA: keep only up to and including the 
+            # signal
             signal_pos = min(valid_signals)
             strand = Strand(sequence[:signal_pos + 6])
             spliced_mrna = RNA(strand, is_pre=False)
         else:
-            # Incomplete or non-exportable mRNA (remains pre-mRNA)
+            # Incomplete or non-exportable mRNA
+            # (remains pre-mRNA)
             strand = Strand(sequence)
             spliced_mrna = RNA(strand, is_pre=True)
 
@@ -797,15 +887,17 @@ def cds(rna):
     Extracts the coding sequence (CDS) from a mature mRNA strand.
 
     This function scans the RNA sequence for a start codon (AUG),
-    and reads triplets (codons) until a stop codon is encountered (UAA, UAG, UGA).
-    The resulting coding sequence includes all codons from the start codon up to,
-    but not including, the stop codon.
+    and reads triplets (codons) until a stop codon is encountered
+    (UAA, UAG, UGA). The resulting coding sequence includes all 
+    codons from the start codon up to, but not including, the 
+    stop codon.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str or None: The coding sequence as a string, or None if no start codon is found.
+        str or None: The coding sequence as a string, or None if
+                     no start codon is found.
     """
     # Read the full RNA strand sequence
     sequence = rna.strand.read()
@@ -818,28 +910,32 @@ def cds(rna):
     coding_sequence = ""
 
     # Process codons from start_index forward in triplets
-    for i in range(start_index, len(sequence) - len(sequence) % 3, 3):
+    for i in range(start_index, 
+                   len(sequence) - len(sequence) % 3, 3):
         codon = sequence[i:i+3]
         coding_sequence += codon
-        if codon in ['UAA', 'UAG', 'UGA']:  # Stop translation at stop codon
+        # Stop translation at stop codon
+        if codon in ['UAA', 'UAG', 'UGA']:
             break
 
     return coding_sequence
 
 def five_prime_utr(rna):
     """
-    Extracts the 5' untranslated region (5' UTR) from a mature mRNA strand.
+    Extracts the 5' untranslated region (5' UTR) from a mature
+    mRNA strand.
 
     This function prepends a 5' cap ("m7G-") to the RNA sequence, 
-    then returns all nucleotides from the beginning of the capped sequence 
-    up to (but not including) the start codon (AUG), which marks the beginning 
-    of the coding sequence.
+    then returns all nucleotides from the beginning of the capped
+    sequence up to (but not including) the start codon (AUG), 
+    which marks the beginning of the coding sequence.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str or None: The 5' UTR (including the cap) as a string, or None if no start codon is found.
+        str or None: The 5' UTR (including the cap) as a string, 
+                     or None if no start codon is found.
     """
     # Read the full RNA strand sequence
     sequence = rna.strand.read()
@@ -852,28 +948,33 @@ def five_prime_utr(rna):
     if start_index == -1:
         return None  # No CDS found, so 5' UTR is undefined
 
-    # Return everything before the start codon (including the cap)
+    # Return everything before the start codon 
+    # (including the cap)
     return sequence[:start_index]
 
 def three_prime_utr(rna):
     """
-    Extracts the 3' untranslated region (3' UTR) from a mature mRNA strand.
+    Extracts the 3' untranslated region (3' UTR) from a mature
+    mRNA strand.
 
-    This function locates the first stop codon (UAA, UAG, or UGA) in the RNA sequence
-    and returns the subsequence that follows it, including the poly-A tail if present.
-    The 5' cap is prepended but not included in the returned UTR.
+    This function locates the first stop codon (UAA, UAG, or UGA)
+    in the RNA sequence and returns the subsequence that follows
+    it, including the poly-A tail if present. The 5' cap is 
+    prepended but not included in the returned UTR.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str or None: The 3' UTR as a string (including the poly-A tail if present), 
-                     or None if no stop codon is found.
+        str or None: The 3' UTR as a string (including the poly-A
+                     tail if present), or None if no stop codon 
+                     is found.
     """
     # Read the RNA sequence
     sequence = rna.strand.read()
 
-    # Prepend the 5' cap (not used for 3' UTR, but consistent with other operations)
+    # Prepend the 5' cap (not used for 3' UTR, but consistent with
+    # other operations)
     sequence = 'm7G-' + sequence
 
     # Append the poly-A tail if present
@@ -881,7 +982,9 @@ def three_prime_utr(rna):
         sequence += '-AAAAAAAAAA'  # simplified poly-A tail
 
     # Locate all stop codon positions (skip if not found)
-    stop_positions = (sequence.find('UAA'), sequence.find('UAG'), sequence.find('UGA'))
+    stop_positions = (sequence.find('UAA'), 
+                      sequence.find('UAG'), 
+                      sequence.find('UGA'))
     valid_stops = [pos for pos in stop_positions if pos > 0]
 
     if not valid_stops:
@@ -904,9 +1007,9 @@ Translation begins at a specific start codon, which has the nucleotide sequence 
 
 To determine which amino acid a codon corresponds to, a codon wheel (shown below) can be used. You start from the center of the wheel and move outward: the amino acid name or abbreviation appears in the outermost layer.
 
-<img width=600 src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/Aminoacids_table.svg.png" />
+<img src="https://dvgodoy.github.io/bioinformatics/assets/images/bio_for_ds/Aminoacids_table.svg.png" />
 
-Source: [Wikipedia](https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables), image released into the public domain by its author, [Mouagip](https://commons.wikimedia.org/wiki/User:Mouagip)
+*Source: [Wikipedia](https://en.wikipedia.org/wiki/DNA_and_RNA_codon_tables), image released into the public domain by its author, [Mouagip](https://commons.wikimedia.org/wiki/User:Mouagip)*
 
 ### Translation in Python
 
@@ -945,16 +1048,18 @@ def translate(rna):
     """
     Translates a mature mRNA sequence into a polypeptide chain.
 
-    This function extracts the coding sequence (CDS) from the given RNA strand 
-    and translates it into a sequence of amino acids using the codon table. 
-    If the RNA does not contain a valid CDS (e.g., missing start codon or stop codon),
-    the function returns 'non-coding RNA'.
+    This function extracts the coding sequence (CDS) from the 
+    given RNA strand and translates it into a sequence of amino
+    acids using the codon table. If the RNA does not contain a 
+    valid CDS (e.g., missing start codon or stop codon), the 
+    function returns 'non-coding RNA'.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str: A polypeptide (amino acid sequence), or 'non-coding RNA' if no valid CDS is found.
+        str: A polypeptide (amino acid sequence), 
+             or 'non-coding RNA' if no valid CDS is found.
     """
     polypeptide = ""
     
@@ -972,7 +1077,8 @@ def translate(rna):
         # Look up the amino acid for this codon
         amino_acid = codon_table[codon]
         
-        # Stop translation at stop codon; do not include it in the output
+        # Stop translation at stop codon; do not include it in
+        # the output
         if amino_acid != "STOP":
             polypeptide += amino_acid    
     
@@ -1008,9 +1114,9 @@ dna_0
 Output
 
 ```
-    DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
-                |||||||||||||||||||||||||   ||||||||||||||||||||||             
-         (-) 3' ACGCTAGCTTGCCTGGTACCGTTCT...ATTAAGCGTTATTTGCTAATGT 5' (128 bps)
+DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
+            |||||||||||||||||||||||||   ||||||||||||||||||||||             
+     (-) 3' ACGCTAGCTTGCCTGGTACCGTTCT...ATTAAGCGTTATTTGCTAATGT 5' (128 bps)
 ```
 
 
@@ -1028,9 +1134,9 @@ dna_1
 Output
 
 ```
-    DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
-                |||||||||||||||||||||||||   ||||||||||||||||||||||             
-         (-) 3' ACGCTAGCTTGCCTGGTACCGTTCT...ATTAAGCGTTATTTGCTAATGT 5' (128 bps)
+DNA: (+) 5' TGCGATCGAACGGACCATGGCAAGA...TAATTCGCAATAAACGATTACA 3' (128 bps)
+            |||||||||||||||||||||||||   ||||||||||||||||||||||             
+     (-) 3' ACGCTAGCTTGCCTGGTACCGTTCT...ATTAAGCGTTATTTGCTAATGT 5' (128 bps)
 ```
 
 
@@ -1047,8 +1153,8 @@ genome
 Output
 
 ```
-    chr #1 | homologous 0 | autosome T
-    chr #1 | homologous 1 | autosome T
+chr #1 | homologous 0 | autosome T
+chr #1 | homologous 1 | autosome T
 ```
 
 
@@ -1063,7 +1169,7 @@ mt_gene
 Output
 
 ```
-    Gene: chr #1 Position: 10-122
+Gene: chr #1 Position: 10-122
 ```
 
 
@@ -1080,12 +1186,12 @@ mt_alleles
 Output
 
 ```
-    (DNA: (+) 5' CGGACCATGGCAAGAAAGGT...TAATTCGCAATAAACGA 3' (113 bps)
-                 ||||||||||||||||||||   |||||||||||||||||             
-          (-) 3' GCCTGGTACCGTTCTTTCCA...ATTAAGCGTTATTTGCT 5' (113 bps),
-     DNA: (+) 5' CGGACCATGGCAAGAAAGGT...TAATTCGCAATAAACGA 3' (113 bps)
-                 ||||||||||||||||||||   |||||||||||||||||             
-          (-) 3' GCCTGGTACCGTTCTTTCCA...ATTAAGCGTTATTTGCT 5' (113 bps))
+(DNA: (+) 5' CGGACCATGGCAAGAAAGGT...TAATTCGCAATAAACGA 3' (113 bps)
+             ||||||||||||||||||||   |||||||||||||||||             
+      (-) 3' GCCTGGTACCGTTCTTTCCA...ATTAAGCGTTATTTGCT 5' (113 bps),
+ DNA: (+) 5' CGGACCATGGCAAGAAAGGT...TAATTCGCAATAAACGA 3' (113 bps)
+             ||||||||||||||||||||   |||||||||||||||||             
+      (-) 3' GCCTGGTACCGTTCTTTCCA...ATTAAGCGTTATTTGCT 5' (113 bps))
 ```
 
 
@@ -1103,7 +1209,7 @@ rna
 Output
 
 ```
-    RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG...AUUCGCAAUAAACGA 3' (113 bps)
+RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG...AUUCGCAAUAAACGA 3' (113 bps)
 ```
 
 
@@ -1120,7 +1226,7 @@ introns
 Output
 
 ```
-    ['GUUCAUUGCGGACAG', 'GUCCAACCACAG', 'GUUUUAACGCGGCAG']
+['GUUCAUUGCGGACAG', 'GUCCAACCACAG', 'GUUUUAACGCGGCAG']
 ```
 
 
@@ -1135,10 +1241,10 @@ exons
 Output
 
 ```
-    ['CGGACCAUGGCAAGAAAG',
-     'ACCUGGGCAAUUAAC',
-     'UGGGCUUCG',
-     'CACGAGCGUGAAUAAUUCGCAAUAAACGA']
+['CGGACCAUGGCAAGAAAG',
+ 'ACCUGGGCAAUUAAC',
+ 'UGGGCUUCG',
+ 'CACGAGCGUGAAUAAUUCGCAAUAAACGA']
 ```
 
 
@@ -1153,21 +1259,21 @@ transcripts
 Output
 
 ```
-    [RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG 3' (18 bps),
-     RNA: (+) 5'  m7G-ACCUGGGCAAUUAAC 3' (15 bps),
-     RNA: (+) 5'  m7G-UGGGCUUCG 3' (9 bps),
-     RNA: (+) 5'  m7G-CACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (26 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAAC 3' (33 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCG 3' (27 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
-     RNA: (+) 5'  m7G-ACCUGGGCAAUUAACUGGGCUUCG 3' (24 bps),
-     RNA: (+) 5'  m7G-ACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (41 bps),
-     RNA: (+) 5'  m7G-UGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (35 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCG 3' (42 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (59 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (53 bps),
-     RNA: (+) 5'  m7G-ACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (50 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (68 bps)]
+[RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAG 3' (18 bps),
+ RNA: (+) 5'  m7G-ACCUGGGCAAUUAAC 3' (15 bps),
+ RNA: (+) 5'  m7G-UGGGCUUCG 3' (9 bps),
+ RNA: (+) 5'  m7G-CACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (26 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAAC 3' (33 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCG 3' (27 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
+ RNA: (+) 5'  m7G-ACCUGGGCAAUUAACUGGGCUUCG 3' (24 bps),
+ RNA: (+) 5'  m7G-ACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (41 bps),
+ RNA: (+) 5'  m7G-UGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (35 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCG 3' (42 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (59 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (53 bps),
+ RNA: (+) 5'  m7G-ACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (50 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (68 bps)]
 ```
 
 
@@ -1184,14 +1290,14 @@ transcripts_with_tails
 Output
 
 ```
-    [RNA: (+) 5'  m7G-CACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (26 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
-     RNA: (+) 5'  m7G-ACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (41 bps),
-     RNA: (+) 5'  m7G-UGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (35 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (59 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (53 bps),
-     RNA: (+) 5'  m7G-ACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (50 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (68 bps)]
+[RNA: (+) 5'  m7G-CACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (26 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
+ RNA: (+) 5'  m7G-ACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (41 bps),
+ RNA: (+) 5'  m7G-UGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (35 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (59 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (53 bps),
+ RNA: (+) 5'  m7G-ACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (50 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (68 bps)]
 ```
 
 
@@ -1206,10 +1312,10 @@ transcripts_with_cds
 Output
 
 ```
-    [RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (59 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (53 bps),
-     RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (68 bps)]
+[RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (44 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (59 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (53 bps),
+ RNA: (+) 5'  m7G-CGGACCAUGGCAAGAAAGACCUGGGCAAUUAACUGGGCUUCGCACGAGCGUGAAUAAUUCGCAAUAAA-AAAAAAAAAA 3' (68 bps)]
 ```
 
 
@@ -1223,7 +1329,7 @@ cds(transcripts_with_cds[0]), five_prime_utr(transcripts_with_cds[0]), three_pri
 Output
 
 ```
-    ('AUGGCAAGAAAGCACGAGCGUGAAUAA', 'm7G-CGGACC', 'AUAAUUCGCAAUAAA-AAAAAAAAAA')
+('AUGGCAAGAAAGCACGAGCGUGAAUAA', 'm7G-CGGACC', 'AUAAUUCGCAAUAAA-AAAAAAAAAA')
 ```
 
 
@@ -1240,7 +1346,7 @@ polypeptides
 Output
 
 ```
-    ['MARKHERE', 'MARKTWAINHERE', 'MARKWASHERE', 'MARKTWAINWASHERE']
+['MARKHERE', 'MARKTWAINHERE', 'MARKWASHERE', 'MARKTWAINWASHERE']
 ```
 
 

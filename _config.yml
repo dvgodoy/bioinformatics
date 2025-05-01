@@ -21,7 +21,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   concepts, keywords, and jargon from biology.
 twitter_username: dvgodoy
 github_username: dvgodoy
-minimal_mistakes_skin: dark
+minimal_mistakes_skin: contrast
 search: true
 
 # Build settings
