@@ -56,8 +56,8 @@ The `Genome` class below can be used to represent a genome and its chromosomes (
 ```python
 class Genome(object):
     """
-    Represents the complete genome of an organism, composed of
-    a set of chromosomes.
+    Represents the complete genome of an organism, composed 
+    of a set of chromosomes.
 
     Attributes:
         chromosomes (list): A list of Chromosome objects 
@@ -144,7 +144,8 @@ class Chromosome(object):
                             is an autosome (True) or a sex 
                             chromosome (False).
     """
-    def __init__(self, number, homol_idx, dna, is_autosome=True):
+    def __init__(self, number, homol_idx, dna, 
+                 is_autosome=True):
         # Chromosome number
         self.number = number
         # 0 or 1 to identify the homolog in a pair
@@ -160,8 +161,9 @@ class Chromosome(object):
         including number, homolog index, and whether it's
         an autosome.
         """
-        return f'chr #{self.number} | homologous {self.homol_idx} \
-                | autosome {"T" if self.is_autosome else "F"}'
+        return f'chr #{self.number} | homologous \
+            {self.homol_idx} | autosome {"T" \
+            if self.is_autosome else "F"}'
 ```
 
 ## DNA
@@ -255,8 +257,8 @@ def replicate(dna):
     # its complement
     first_copy = dna_polymerase(dna.second_strand)
     
-    # Return two new DNA molecules, each made from one original
-    # and one new strand
+    # Return two new DNA molecules, each made from one 
+    # original and one new strand
     return (DNA(dna.first_strand, second_copy), 
             DNA(first_copy, dna.second_strand))
 ```
@@ -316,7 +318,8 @@ class Strand(object):
         nucleotides (str): The sequence of nucleotide 
                            bases (A, T, G, C, or U).
         is_positive (bool): Indicates the strand direction.
-                            True for 5' to 3',False for 3' to 5'.
+                            True for 5' to 3', False for
+                            3' to 5'.
     """
     def __init__(self, nucleotides, is_positive=True):
         self.nucleotides = nucleotides
@@ -326,7 +329,8 @@ class Strand(object):
     def __getitem__(self, index):
         # Supports slicing or indexing to return a new Strand 
         # instance with the same orientation.
-        return Strand(self.nucleotides[index], self.is_positive)
+        return Strand(self.nucleotides[index], 
+                      self.is_positive)
 
     @property
     def positive(self):
@@ -341,14 +345,17 @@ class Strand(object):
         self.show_length = length
 
     def __repr__(self):
-        # Creates a readable representation showing direction, 
-        # sequence (trimmed if long), and length.
+        # Creates a readable representation showing 
+        # direction, sequence (trimmed if long), 
+        # and length.
         fprime = "(+) 5'"
         tprime = "(-) 3'"
         nucleotides = self.read()
         if len(nucleotides) > self.show_length:
-            nucleotides = nucleotides[:int(self.show_length/2)] \
-                +'...'+ nucleotides[-int(self.show_length/2)+3:]
+            nucleotides = \
+                nucleotides[:int(self.show_length/2)] + \
+                '...' + \
+                nucleotides[-int(self.show_length/2)+3:]
         return f'{fprime if self.is_positive else tprime} \
                  {nucleotides} {tprime[4:] \
                  if self.is_positive else fprime[4:]} \
@@ -400,13 +407,14 @@ class Gene(object):
     a genome.
 
     Attributes:
-        genome (Genome): The genome object this gene belongs to.
-        chr_number (int): The chromosome number where the gene 
-                          is located.
-        start (int): The starting index (inclusive) of the gene 
-                     on the chromosome.
-        end (int): The ending index (inclusive) of the gene on
-                   the chromosome.
+        genome (Genome): The genome object this gene 
+                         belongs to.
+        chr_number (int): The chromosome number where 
+                          the gene is located.
+        start (int): The starting index (inclusive) of 
+                     the gene on the chromosome.
+        end (int): The ending index (inclusive) of the 
+                   gene on the chromosome.
     """
     def __init__(self, genome, chr_number, start, end):
         self.genome = genome
@@ -416,8 +424,8 @@ class Gene(object):
 
     def __repr__(self):
         """
-        Provides a readable string representation of the gene 
-        location.
+        Provides a readable string representation of the
+        gene location.
         """
         return f'Gene: chr #{self.chr_number} \
                  Position: {self.start}-{self.end}'
@@ -462,11 +470,12 @@ The `RNA` class below can be used to represent a single-strand mRNA molecule whi
 ```python
 class RNA(object):
     """
-    Represents an RNA molecule, either pre-mRNA or mature mRNA.
+    Represents an RNA molecule, either pre-mRNA or 
+    mature mRNA.
 
     Attributes:
-        strand (Strand): The nucleotide sequence (as a Strand 
-                         object).
+        strand (Strand): The nucleotide sequence (as a 
+                         Strand object).
         is_pre (bool): Flag indicating whether the RNA is 
                        pre-mRNA (True) or mature (False).
     """
@@ -485,8 +494,8 @@ class RNA(object):
 
 class DNA(object):
     """
-    Represents a double-stranded DNA molecule with a positive 
-    (coding) and a negative (template) strand.
+    Represents a double-stranded DNA molecule with a 
+    positive (coding) and a negative (template) strand.
     """
     def __init__(self, first_strand, second_strand):
         assert first_strand.positive
@@ -503,8 +512,8 @@ class DNA(object):
 
     @property
     def coding_strand(self):
-        """Returns the positive (coding) strand, identical to
-        mRNA except T is used instead of U."""
+        """Returns the positive (coding) strand, identical
+        to mRNA except T is used instead of U."""
         return self.first_strand
 
     def __getitem__(self, index):
@@ -541,8 +550,8 @@ The `rna_polymerase()` function below can be used to synthesize a new RNA strand
 ```python
 def rna_polymerase(strand):
     """
-    Simulates the action of RNA polymerase, transcribing a DNA
-    strand into RNA.
+    Simulates the action of RNA polymerase, transcribing a
+    DNA strand into RNA.
 
     Args:
         strand (Strand): The DNA strand to be transcribed 
@@ -569,8 +578,8 @@ def transcribe(dna, gene):
                      indices on the chromosome.
 
     Returns:
-        RNA: A pre-mRNA strand resulting from transcription of
-             the gene.
+        RNA: A pre-mRNA strand resulting from transcription
+             of the gene.
     """
     start = gene.start
     end = gene.end
@@ -611,16 +620,18 @@ The `alleles()` function below can be used to extract the two alleles/variants o
 ```python
 def alleles(gene):
     """
-    Extracts the two alleles (maternal and paternal variants) of
-    a given gene from its chromosome pair in the genome.
+    Extracts the two alleles (maternal and paternal variants)
+    of a given gene from its chromosome pair in the genome.
 
     Args:
         gene (Gene): The gene object, which includes the 
-                     chromosome number and start/end positions.
+                     chromosome number and start/end
+                     positions.
 
     Returns:
-        tuple: A pair of DNA substrings representing the gene's
-               alleles from the homologous chromosomes.
+        tuple: A pair of DNA substrings representing the
+               gene's alleles from the homologous
+               chromosomes.
     """
     # Retrieve the homologous chromosome pair for the gene
     chrs = gene.genome.get_ith_chromosomes(gene.chr_number)
@@ -680,13 +691,15 @@ def gt_ag_rule(nucleotides, is_dna=True):
 
     Args:
         nucleotides (str): The full nucleotide sequence.
-        is_dna (bool): True if the sequence is DNA, False if RNA.
+        is_dna (bool): True if the sequence is DNA, 
+                       False if RNA.
 
     Returns:
         list: All matched intron sequences (non-greedy) that 
               start with GT/GU and end with AG.
     """
-    # In DNA, introns typically start with 'GT' and end with 'AG'
+    # In DNA, introns typically start with 'GT' and 
+    # end with 'AG'
     # In RNA, those become 'GU' and 'AG'
     pattern = r"(GT.*?AG)" if is_dna else r"(GU.*?AG)"
     intron_pattern = re.compile(pattern)
@@ -715,7 +728,8 @@ def get_exons(rna, introns):
 
     Args:
         rna (RNA): An RNA object.
-        introns (list): A list of identified intron subsequences.
+        introns (list): A list of identified intron 
+                        subsequences.
 
     Returns:
         list: List of exon sequences (segments not matching 
@@ -725,7 +739,8 @@ def get_exons(rna, introns):
     if not introns:
         # If no introns found, the entire strand is exon
         return [sequence]
-    return re.split('|'.join(map(re.escape, introns)), sequence)
+    return re.split('|'.join(map(re.escape, introns)), 
+                    sequence)
 ```
 
 ## Transcript (Mature mRNA)
@@ -758,7 +773,8 @@ The `RNA` class below has an improved representation that includes capping and t
 ```python
 class RNA(object):
     """
-    Represents an RNA molecule, either pre-mRNA or mature mRNA.
+    Represents an RNA molecule, either pre-mRNA or 
+    mature mRNA.
 
     Attributes:
         strand (Strand): The nucleotide sequence 
@@ -782,7 +798,8 @@ class RNA(object):
 
     def __repr__(self):
         """
-        Returns a string representation of the RNA sequence, with
+        Returns a string representation of the RNA sequence, 
+        with:
         - a 5' cap (m7G-) prepended
         - a 3' poly-A tail appended, if it's mature mRNA
         """
@@ -794,12 +811,13 @@ class RNA(object):
         nucleotides = first.split(' ')[2]
 
         # Add 5' cap
-        first = first.replace(nucleotides, ' m7G-' + nucleotides)
+        first = first.replace(nucleotides, 
+                              ' m7G-'+nucleotides)
 
         # Add 3' poly-A tail if it's a mature mRNA
         if self.has_poly_a_tail:
             first = first.replace(nucleotides, 
-                                  nucleotides + '-AAAAAAAAAA')
+                                  nucleotides+'-AAAAAAAAAA')
 
         return f'RNA: {first}'
 ```
@@ -815,20 +833,21 @@ def splice(rna):
     Simulates alternative splicing of a pre-mRNA strand into
     multiple mRNA variants.
 
-    This function generates all non-empty combinations of exons 
-    from the input pre-mRNA, checks each for a polyadenylation 
-    signal, and constructs mature or pre-mRNA variants 
-    accordingly.
+    This function generates all non-empty combinations of
+    exons from the input pre-mRNA, checks each for a 
+    polyadenylation signal, and constructs mature or 
+    pre-mRNA variants accordingly.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        list of RNA: A list of RNA objects representing different
-                     spliced variants. Each RNA object is flagged
-                     as mature or pre-mRNA depending on whether
-                     a polyadenylation signal was found in the 
-                     spliced sequence.
+        list of RNA: A list of RNA objects representing 
+                     different spliced variants. Each RNA
+                     object is flagged as mature or pre-mRNA
+                     depending on whether a polyadenylation
+                     signal was found in the spliced 
+                     sequence.
     """
     # Identify intronic regions
     introns = find_introns(rna)
@@ -838,7 +857,9 @@ def splice(rna):
     # Prepare all possible exon combinations
     exon_combinations = []
     for i in range(len(exons) + 1):
-        exon_combinations.extend(itertools.combinations(exons, i))
+        exon_combinations.extend(
+            itertools.combinations(exons, i)
+        )
 
     # Store resulting mRNA variants
     spliced_variants = []
@@ -847,15 +868,15 @@ def splice(rna):
         # Concatenate selected exons into one sequence
         sequence = ''.join(combo)
 
-        # Check for polyadenylation signal (required for export
-        # & translation)
+        # Check for polyadenylation signal 
+        # (required for export & translation)
         signal_pos = (sequence.find('AAUAAA'), 
                       sequence.find('AUUAAA'))
         valid_signals = [pos for pos in signal_pos if pos > 0]
 
         if valid_signals:
-            # Mature mRNA: keep only up to and including the 
-            # signal
+            # Mature mRNA: keep only up to and including
+            # the signal
             signal_pos = min(valid_signals)
             strand = Strand(sequence[:signal_pos + 6])
             spliced_mrna = RNA(strand, is_pre=False)
@@ -884,20 +905,21 @@ The `cds()`, `five_prime_utr()`, and `three_prime_utr()` functions below can be 
 ```python
 def cds(rna):
     """
-    Extracts the coding sequence (CDS) from a mature mRNA strand.
+    Extracts the coding sequence (CDS) from a mature 
+    mRNA strand.
 
-    This function scans the RNA sequence for a start codon (AUG),
-    and reads triplets (codons) until a stop codon is encountered
-    (UAA, UAG, UGA). The resulting coding sequence includes all 
-    codons from the start codon up to, but not including, the 
-    stop codon.
+    This function scans the RNA sequence for a start codon
+    (AUG), and reads triplets (codons) until a stop codon
+    is encountered (UAA, UAG, UGA). The resulting coding 
+    sequence includes all codons from the start codon up to,
+    but not including, the stop codon.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str or None: The coding sequence as a string, or None if
-                     no start codon is found.
+        str or None: The coding sequence as a string,
+                     or None if no start codon is found.
     """
     # Read the full RNA strand sequence
     sequence = rna.strand.read()
@@ -922,20 +944,22 @@ def cds(rna):
 
 def five_prime_utr(rna):
     """
-    Extracts the 5' untranslated region (5' UTR) from a mature
-    mRNA strand.
+    Extracts the 5' untranslated region (5' UTR) from 
+    a mature mRNA strand.
 
-    This function prepends a 5' cap ("m7G-") to the RNA sequence, 
-    then returns all nucleotides from the beginning of the capped
-    sequence up to (but not including) the start codon (AUG), 
-    which marks the beginning of the coding sequence.
+    This function prepends a 5' cap ("m7G-") to the RNA
+    sequence, then returns all nucleotides from the
+    beginning of the capped sequence up to (but not
+    including) the start codon (AUG),  which marks the
+    beginning of the coding sequence.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str or None: The 5' UTR (including the cap) as a string, 
-                     or None if no start codon is found.
+        str or None: The 5' UTR (including the cap) as
+                     a string, or None if no start codon
+                     is found.
     """
     # Read the full RNA strand sequence
     sequence = rna.strand.read()
@@ -954,27 +978,28 @@ def five_prime_utr(rna):
 
 def three_prime_utr(rna):
     """
-    Extracts the 3' untranslated region (3' UTR) from a mature
-    mRNA strand.
+    Extracts the 3' untranslated region (3' UTR) from 
+    a mature mRNA strand.
 
-    This function locates the first stop codon (UAA, UAG, or UGA)
-    in the RNA sequence and returns the subsequence that follows
-    it, including the poly-A tail if present. The 5' cap is 
-    prepended but not included in the returned UTR.
+    This function locates the first stop codon (UAA, 
+    UAG, or UGA) in the RNA sequence and returns the
+    subsequence that follows it, including the poly-A 
+    tail if present. The 5' cap is prepended but not
+    included in the returned UTR.
 
     Parameters:
         rna: An instance of the RNA class.
 
     Returns:
-        str or None: The 3' UTR as a string (including the poly-A
-                     tail if present), or None if no stop codon 
-                     is found.
+        str or None: The 3' UTR as a string (including the
+                     poly-A tail if present), or None if 
+                     no stop codon is found.
     """
     # Read the RNA sequence
     sequence = rna.strand.read()
 
-    # Prepend the 5' cap (not used for 3' UTR, but consistent with
-    # other operations)
+    # Prepend the 5' cap (not used for 3' UTR, but 
+    # consistent with other operations)
     sequence = 'm7G-' + sequence
 
     # Append the poly-A tail if present
@@ -1046,13 +1071,14 @@ codon_table = {
 
 def translate(rna):
     """
-    Translates a mature mRNA sequence into a polypeptide chain.
+    Translates a mature mRNA sequence into a polypeptide
+    chain.
 
-    This function extracts the coding sequence (CDS) from the 
-    given RNA strand and translates it into a sequence of amino
-    acids using the codon table. If the RNA does not contain a 
-    valid CDS (e.g., missing start codon or stop codon), the 
-    function returns 'non-coding RNA'.
+    This function extracts the coding sequence (CDS) from
+    the given RNA strand and translates it into a sequence
+    of amino acids using the codon table. If the RNA does
+    not contain a valid CDS (e.g., missing start codon or
+    stop codon), the function returns 'non-coding RNA'.
 
     Parameters:
         rna: An instance of the RNA class.
@@ -1070,15 +1096,16 @@ def translate(rna):
     if sequence is None:
         return 'non-coding RNA'
     
-    # Iterate over the CDS in codons (groups of 3 nucleotides)
+    # Iterate over the CDS in codons 
+    # (groups of 3 nucleotides)
     for i in range(0, len(sequence), 3):
         codon = sequence[i:i+3]
         
         # Look up the amino acid for this codon
         amino_acid = codon_table[codon]
         
-        # Stop translation at stop codon; do not include it in
-        # the output
+        # Stop translation at stop codon; 
+        # do not include it in the output
         if amino_acid != "STOP":
             polypeptide += amino_acid    
     
