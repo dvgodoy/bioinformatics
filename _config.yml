@@ -59,21 +59,18 @@ plugins:
 
 author:
   name   : "Daniel Voigt Godoy"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "bioinformatics/assets/images/bio-photo.jpg"
   bio    : "A data scientist and programmer on a quest to learn bioinformatics!"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      url: "https://"
+      url: "https://pytorchstepbystep.com"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
+      url: "https://twitter.com/dvgodoy"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+      url: "https://github.com/dvgodoy"
 
 footer:
   links:
